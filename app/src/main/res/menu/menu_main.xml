@@ -18,7 +18,7 @@
     <item
         android:id="@+id/action_shader2"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="网格"
+        android:title="归一化"
         app:showAsAction="never" />
 
     <item
