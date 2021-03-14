@@ -5,9 +5,12 @@ import android.opengl.GLES10.glClear
 import android.opengl.GLES10.glViewport
 import android.opengl.GLES20.*
 import android.opengl.GLSurfaceView
-import android.opengl.Matrix.orthoM
+import android.opengl.Matrix
+import android.opengl.Matrix.rotateM
+import android.opengl.Matrix.setIdentityM
 import com.example.opengleslearn.R
 import com.example.opengleslearn.util.LoggerConfig
+import com.example.opengleslearn.util.MatrixHelper
 import com.example.opengleslearn.util.ShaderHelper
 import com.example.opengleslearn.util.TextResourceReader
 import java.nio.ByteBuffer
@@ -18,17 +21,19 @@ import javax.microedition.khronos.opengles.GL10
 
 
 /**
-　　* @Description:
+　　* @Description:3D 展示
 　　* @author 刘宇飞
 　　* @date  2021/2/28 13:27
 　　*/
-class ThreeRender(context: Context) : GLSurfaceView.Renderer {
+class FourRender(context: Context) : GLSurfaceView.Renderer {
     private val mContext: Context = context
     private var mProgram: Int = 0
     private var mColorLocation = 0
     private var mPositionLocation = 0
     private var mMatrixLocation = 0
     private val mProjectionMatrix = FloatArray(16)
+    private val mModelMatrix = FloatArray(16)
+
 
     companion object {
         const val BYTES_PER_FLOAT = 4
@@ -44,7 +49,6 @@ class ThreeRender(context: Context) : GLSurfaceView.Renderer {
     private var mVertexData: FloatBuffer? = null
 
     init {
-
 
         val tableVerticesWithTriangles = floatArrayOf( // Order of coordinates: X, Y, R, G, B
 
@@ -123,14 +127,17 @@ class ThreeRender(context: Context) : GLSurfaceView.Renderer {
 
     override fun onSurfaceChanged(p0: GL10?, width: Int, height: Int) {
         glViewport(0, 0, width, height)
-        // 调整正交投影矩阵
-        val aspectRatio =
-            if (width > height) width.toFloat() / height.toFloat() else height.toFloat() / width.toFloat()
-        if (width > height) {
-            orthoM(mProjectionMatrix, 0, -aspectRatio, aspectRatio, -1f, 1f, -1f, 1f)
-        } else {
-            orthoM(mProjectionMatrix, 0, -1f, 1f, -aspectRatio, aspectRatio, -1f, 1f)
-        }
+        // 使用透视投影
+        MatrixHelper.perspectiveM(
+            mProjectionMatrix, 60f, width.toFloat()
+                    / height.toFloat(), 1f, 10f
+        )
+        setIdentityM(mModelMatrix, 0)
+        Matrix.translateM(mModelMatrix, 0, 0f, 0f, -2.5f)
+        rotateM(mModelMatrix, 0, -60f, 1f, 0f, 0f)
+        val temp = FloatArray(16)
+        Matrix.multiplyMM(temp, 0, mProjectionMatrix, 0, mModelMatrix, 0)
+        System.arraycopy(temp, 0, mProjectionMatrix, 0, temp.size)
     }
 
     override fun onDrawFrame(glUnused: GL10?) {
