@@ -30,7 +30,7 @@
     <item
         android:id="@+id/action_shader4"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="边缘"
+        android:title="纹理绘制"
         app:showAsAction="never" />
 
     <item

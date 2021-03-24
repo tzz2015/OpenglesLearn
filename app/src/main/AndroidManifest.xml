@@ -21,6 +21,7 @@
         <activity android:name=".activity.FirstActivity" />
         <activity android:name=".activity.ThreeActivity" />
         <activity android:name=".activity.FourActivity" />
+        <activity android:name=".activity.FiveActivity" />
 
 
     </application>
