@@ -33,6 +33,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_shader2 -> startActivity(Intent(this, ThreeActivity::class.java))
             R.id.action_shader3 -> startActivity(Intent(this, FourActivity::class.java))
             R.id.action_shader4 -> startActivity(Intent(this, FiveActivity::class.java))
+            R.id.action_shader5 -> startActivity(Intent(this, SixActivity::class.java))
 
 
         }

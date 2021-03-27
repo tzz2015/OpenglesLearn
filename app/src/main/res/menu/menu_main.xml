@@ -36,7 +36,7 @@
     <item
         android:id="@+id/action_shader5"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="放大"
+        android:title="绘制冰球"
         app:showAsAction="never" />
 
     <item
