@@ -42,7 +42,7 @@
     <item
         android:id="@+id/action_shader6"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="形变"
+        android:title="触摸移动"
         app:showAsAction="never" />
     <item
         android:icon="@drawable/ic_aspect_sample"
