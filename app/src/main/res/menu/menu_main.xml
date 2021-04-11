@@ -45,8 +45,9 @@
         android:title="触摸移动"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_shader7"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="普通渲染"
+        android:title="粒子渲染"
         app:showAsAction="never" />
 
     <item

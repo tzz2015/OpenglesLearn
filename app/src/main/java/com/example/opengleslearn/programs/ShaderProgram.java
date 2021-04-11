@@ -18,19 +18,24 @@ import static android.opengl.GLES20.glUseProgram;
 
 abstract class ShaderProgram {
     // Uniform constants
-    protected static final String U_MATRIX = "u_Matrix";
-    protected static final String U_TEXTURE_UNIT = "u_TextureUnit";
+    static final String U_MATRIX = "u_Matrix";
+    static final String U_TEXTURE_UNIT = "u_TextureUnit";
 
     // Attribute constants
-    protected static final String A_POSITION = "a_Position";
-    protected static final String A_COLOR = "a_Color";
-    protected static final String U_COLOR = "u_Color";
-    protected static final String A_TEXTURE_COORDINATES = "a_TextureCoordinates";
+    static final String A_POSITION = "a_Position";
+    static final String A_COLOR = "a_Color";
+    static final String U_COLOR = "u_Color";
+    static final String A_TEXTURE_COORDINATES = "a_TextureCoordinates";
+
+    // 粒子构建需要
+    static final String U_TIME = "u_Time";
+    static final String A_DIRECTION_VECTOR = "a_DirectionVector";
+    static final String A_PARTICLE_START_TIME = "a_ParticleStartTime";
 
     // Shader program
-    protected final int program;
-    protected ShaderProgram(Context context, int vertexShaderResourceId,
-        int fragmentShaderResourceId) {
+    final int program;
+    ShaderProgram(Context context, int vertexShaderResourceId,
+                  int fragmentShaderResourceId) {
         // Compile the shaders and link the program.
         program = ShaderHelper.buildProgram(
             TextResourceReader.readTextFileFromResource(

@@ -35,4 +35,14 @@ public class VertexArray {
 
         floatBuffer.position(0);
     }
+
+    /**
+     * Updates the float buffer with the specified vertex data, assuming that
+     * the vertex data and the float buffer are the same size.
+     */
+    public void updateBuffer(float[] vertexData, int start, int count) {
+        floatBuffer.position(start);
+        floatBuffer.put(vertexData, start, count);
+        floatBuffer.position(0);
+    }
 }
