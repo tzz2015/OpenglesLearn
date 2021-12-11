@@ -51,67 +51,11 @@
         app:showAsAction="never" />
 
     <item
+        android:id="@+id/action_shader8"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="马赛克"
+        android:title="图片渲染"
         app:showAsAction="never" />
 
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="网格"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="旋转"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="边缘"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="放大"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="形变"
-        app:showAsAction="never" />
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="普通渲染"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="马赛克"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="网格"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="旋转"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="边缘"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="放大"
-        app:showAsAction="never" />
-
-    <item
-        android:icon="@drawable/ic_aspect_sample"
-        android:title="形变"
-        app:showAsAction="never" />
+    
 
 </menu>

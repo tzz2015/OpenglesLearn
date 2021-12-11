@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -17,7 +16,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".activity.SecondActivity"/>
+        <activity android:name=".activity.SecondActivity" />
         <activity android:name=".activity.FirstActivity" />
         <activity android:name=".activity.ThreeActivity" />
         <activity android:name=".activity.FourActivity" />
@@ -25,7 +24,7 @@
         <activity android:name=".activity.SixActivity" />
         <activity android:name=".activity.SevenActivity" />
         <activity android:name=".activity.ParticleActivity" />
-
+        <activity android:name=".activity.PictureLoadActivity"/>
 
     </application>
 
