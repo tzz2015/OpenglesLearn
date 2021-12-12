@@ -2,7 +2,6 @@ package com.example.opengleslearn.render
 
 import android.content.Context
 import android.opengl.GLES10.glClear
-import android.opengl.GLES10.glViewport
 import android.opengl.GLES20.*
 import android.opengl.Matrix
 import android.opengl.Matrix.orthoM
@@ -32,7 +31,7 @@ class PictureLoadRender(context: Context) : CommonRenderer() {
     private var mStMatrixLocation = 0
     private val mMvpMatrix = FloatArray(16)
     private val mStMatrix = FloatArray(16)
-    private var mTexture: Int = 0
+    private var mBgTexture: Int = 0
     private var mPicWidth: Int = 0
     private var mPicHeight: Int = 0
 
@@ -111,11 +110,11 @@ class PictureLoadRender(context: Context) : CommonRenderer() {
         mStMatrixLocation = glGetUniformLocation(mProgram, U_ST_MATRIX)
 
 
-        if (mTexture > 0) {
-            glDeleteTextures(0, intArrayOf(mTexture), 0)
+        if (mBgTexture > 0) {
+            glDeleteTextures(0, intArrayOf(mBgTexture), 0)
         }
         val loadTexture = TextureHelper.loadTexture(mContext, R.drawable.icon_lyf)
-        mTexture = loadTexture[0]
+        mBgTexture = loadTexture[0]
         mPicWidth = loadTexture[1]
         mPicHeight = loadTexture[2]
 
@@ -132,7 +131,6 @@ class PictureLoadRender(context: Context) : CommonRenderer() {
             0,
             mVertexData
         )
-//        glEnableVertexAttribArray(mPositionLocation)
         mTextureData?.position(0)
         glVertexAttribPointer(
             mTextureLocation,
@@ -142,29 +140,27 @@ class PictureLoadRender(context: Context) : CommonRenderer() {
             0,
             mTextureData
         )
-//        glEnableVertexAttribArray(mTextureLocation)
     }
 
     override fun onSurfaceChanged(p0: GL10?, width: Int, height: Int) {
-        glViewport(0, 0, width, height)
-        Matrix.setIdentityM(mMvpMatrix, 0)
-        Matrix.setIdentityM(mStMatrix, 0)
-        centerCrop(width,height)
+        super.onSurfaceChanged(p0, width, height)
+        centerCrop()
 //        centerInsert(width,height)
-
     }
 
     /**
      * 居中显示
      */
-    private fun centerInsert(width: Int, height: Int) {
+    private fun centerInsert() {
+        Matrix.setIdentityM(mMvpMatrix, 0)
+        Matrix.setIdentityM(mStMatrix, 0)
         val projectionMatrix = FloatArray(16)
         val viewMatrix = FloatArray(16)
         val picWidth = mPicWidth.toFloat()
         val picHeight = mPicHeight.toFloat()
         val picRatio = picWidth / picHeight
-        val screenRatio = width / height.toFloat()
-        if (width > height) {
+        val screenRatio = mViewWidth / mViewHeight.toFloat()
+        if (mViewWidth > mViewHeight) {
             if (picRatio > screenRatio) {
                 orthoM(
                     projectionMatrix,
@@ -222,22 +218,24 @@ class PictureLoadRender(context: Context) : CommonRenderer() {
     /**
      * 居中裁剪
      */
-    private fun centerCrop(width: Int, height: Int) {
+    private fun centerCrop() {
+        Matrix.setIdentityM(mMvpMatrix, 0)
+        Matrix.setIdentityM(mStMatrix, 0)
         var picWidth = mPicWidth.toFloat()
         var picHeight = mPicHeight.toFloat()
         val picRatio = picWidth / picHeight
-        val screenRatio = width / height.toFloat()
+        val screenRatio = mViewWidth / mViewHeight.toFloat()
         var scaleX: Float = 1.0f
         var scaleY: Float = 1.0f
         if (screenRatio > picRatio) {
-            picWidth = width.toFloat()
+            picWidth = mViewWidth.toFloat()
             picHeight = picWidth / picRatio
             scaleX = 1.0f
-            scaleY = height / picHeight
+            scaleY = mViewHeight / picHeight
         } else {
-            picHeight = height.toFloat()
+            picHeight = mViewHeight.toFloat()
             picWidth = picHeight * picRatio
-            scaleX = width / picWidth
+            scaleX = mViewWidth / picWidth
             scaleY = 1.0f
         }
         Matrix.translateM(mStMatrix, 0, (1.0f - scaleX) / 2f, (1.0f - scaleY) / 2f, 1.0f)
@@ -247,9 +245,6 @@ class PictureLoadRender(context: Context) : CommonRenderer() {
     override fun onDrawFrame(glUnused: GL10?) {
         glClear(GL_COLOR_BUFFER_BIT)
         drawBackGround()
-
-
-
     }
 
     /**
@@ -265,7 +260,7 @@ class PictureLoadRender(context: Context) : CommonRenderer() {
         glEnableVertexAttribArray(mTextureLocation)
         // 绑定纹理
         glActiveTexture(GL_TEXTURE0)
-        glBindTexture(GL_TEXTURE_2D, mTexture)
+        glBindTexture(GL_TEXTURE_2D, mBgTexture)
         glUniform1i(mTextureUnitLocation, 0)
         bindDate()
         glDrawArrays(GL_TRIANGLE_STRIP, 0, 4)
@@ -275,9 +270,9 @@ class PictureLoadRender(context: Context) : CommonRenderer() {
         glBindTexture(GL_TEXTURE_2D, 0)
     }
 
-    override fun onDestroy(){
-        if (mTexture > 0) {
-            glDeleteTextures(0, intArrayOf(mTexture), 0)
+    override fun onDestroy() {
+        if (mBgTexture > 0) {
+            glDeleteTextures(0, intArrayOf(mBgTexture), 0)
         }
     }
 
