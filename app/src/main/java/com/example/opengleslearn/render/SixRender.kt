@@ -48,7 +48,7 @@ class SixRender(context: Context) : GLSurfaceView.Renderer {
         textureProgram = TextureShaderProgram(mContext)
         colorProgram = ColorShaderProgram2(mContext)
 
-        texture = TextureHelper.loadTexture(mContext, R.drawable.air_hockey_surface)
+        texture = TextureHelper.loadTexture(mContext, R.drawable.air_hockey_surface)[0]
 
 
     }

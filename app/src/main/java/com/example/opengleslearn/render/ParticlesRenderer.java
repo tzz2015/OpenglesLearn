@@ -120,7 +120,7 @@ public class ParticlesRenderer implements Renderer {
         
         random = new Random();  */
         
-        texture = TextureHelper.loadTexture(context, R.drawable.particle_texture);
+        texture = TextureHelper.loadTexture(context, R.drawable.particle_texture)[0];
     }
 
     @Override

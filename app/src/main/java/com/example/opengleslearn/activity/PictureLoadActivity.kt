@@ -5,7 +5,7 @@ import android.view.ViewGroup
 import androidx.appcompat.app.AppCompatActivity
 import androidx.constraintlayout.widget.ConstraintLayout
 import com.example.opengleslearn.R
-import com.example.opengleslearn.render.ThreeRender
+import com.example.opengleslearn.render.PictureLoadRender
 import com.example.opengleslearn.surfaceView.CommonSurfaceView
 import com.example.opengleslearn.util.ScreenUtils
 import kotlinx.android.synthetic.main.activity_picture_load.*
@@ -14,7 +14,7 @@ class PictureLoadActivity : AppCompatActivity() {
     private val mGlSurfaceView: CommonSurfaceView by lazy {
         CommonSurfaceView(
             this,
-            ThreeRender(this)
+            PictureLoadRender(this)
         )
     }
 
@@ -65,5 +65,6 @@ class PictureLoadActivity : AppCompatActivity() {
         super.onPause()
         mGlSurfaceView.onPause()
     }
+
 
 }

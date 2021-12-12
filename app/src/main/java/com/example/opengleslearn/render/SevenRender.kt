@@ -170,7 +170,7 @@ class SevenRender(context: Context) : GLSurfaceView.Renderer {
         puckVector = Vector(0f, 0f, 0f)
         textureProgram = TextureShaderProgram(mContext)
         colorProgram = ColorShaderProgram2(mContext)
-        texture = TextureHelper.loadTexture(mContext, R.drawable.air_hockey_surface)
+        texture = TextureHelper.loadTexture(mContext, R.drawable.air_hockey_surface)[0]
     }
 
     override fun onSurfaceChanged(glUnused: GL10?, width: Int, height: Int) {

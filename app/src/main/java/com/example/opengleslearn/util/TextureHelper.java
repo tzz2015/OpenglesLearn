@@ -32,7 +32,7 @@ public class TextureHelper {
      * @param resourceId
      * @return
      */
-    public static int loadTexture(Context context, int resourceId) {
+    public static int[] loadTexture(Context context, int resourceId) {
         final int[] textureObjectIds = new int[1];
         // 创建一个纹理对象 将id 储存在数组
         glGenTextures(1, textureObjectIds, 0);
@@ -41,7 +41,7 @@ public class TextureHelper {
             if (LoggerConfig.ON) {
                 Log.e(TAG, "不能创建一个纹理对象");
             }
-            return 0;
+            return new int[]{0,0,0};
         }
         final BitmapFactory.Options options = new BitmapFactory.Options();
         options.inScaled = false;
@@ -56,8 +56,10 @@ public class TextureHelper {
             }
 
             glDeleteTextures(1, textureObjectIds, 0);
-            return 0;
+            return new int[]{0,0,0};
         }
+        int width = bitmap.getWidth();
+        int height = bitmap.getHeight();
         // Bind to the texture in OpenGL
         glBindTexture(GL_TEXTURE_2D, textureObjectIds[0]);
         // Set filtering: a default must be set, or the texture will be
@@ -78,6 +80,6 @@ public class TextureHelper {
         // Unbind from the texture.
         glBindTexture(GL_TEXTURE_2D, 0);
 
-        return textureObjectIds[0];
+        return new int[]{textureObjectIds[0],width,height};
     }
 }
