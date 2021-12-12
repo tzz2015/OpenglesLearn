@@ -151,19 +151,28 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
         glViewport(0, 0, width, height)
         Matrix.setIdentityM(mMvpMatrix, 0)
         Matrix.setIdentityM(mStMatrix, 0)
+        centerCrop(width,height)
+//        centerInsert(width,height)
+
+    }
+
+    /**
+     * 居中显示
+     */
+    private fun centerInsert(width: Int, height: Int) {
         val projectionMatrix = FloatArray(16)
         val viewMatrix = FloatArray(16)
-        val w = mPicWidth
-        val h = mPicHeight
-        val sWH = w / h.toFloat()
-        val sWidthHeight = width / height.toFloat()
+        var picWidth = mPicWidth.toFloat()
+        var picHeight = mPicHeight.toFloat()
+        val picRatio = picWidth / picHeight
+        val screenRatio = width / height.toFloat()
         if (width > height) {
-            if (sWH > sWidthHeight) {
+            if (picRatio > screenRatio) {
                 orthoM(
                     projectionMatrix,
                     0,
-                    -sWidthHeight * sWH,
-                    sWidthHeight * sWH,
+                    -screenRatio * picRatio,
+                    screenRatio * picRatio,
                     -1f,
                     1f,
                     3f,
@@ -173,8 +182,8 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
                 orthoM(
                     projectionMatrix,
                     0,
-                    -sWidthHeight / sWH,
-                    sWidthHeight / sWH,
+                    -screenRatio / picRatio,
+                    screenRatio / picRatio,
                     -1f,
                     1f,
                     3f,
@@ -182,14 +191,14 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
                 )
             }
         } else {
-            if (sWH > sWidthHeight) {
+            if (picRatio > screenRatio) {
                 orthoM(
                     projectionMatrix,
                     0,
                     -1f,
                     1f,
-                    -1 / sWidthHeight * sWH,
-                    1 / sWidthHeight * sWH,
+                    -1 / screenRatio * picRatio,
+                    1 / screenRatio * picRatio,
                     3f,
                     7f
                 )
@@ -199,8 +208,8 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
                     0,
                     -1f,
                     1f,
-                    -sWH / sWidthHeight,
-                    sWH / sWidthHeight,
+                    -picRatio / screenRatio,
+                    picRatio / screenRatio,
                     3f,
                     7f
                 )
@@ -210,6 +219,31 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
         Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, 7.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f)
         //计算变换矩阵
         Matrix.multiplyMM(mMvpMatrix, 0, projectionMatrix, 0, viewMatrix, 0)
+    }
+
+    /**
+     * 居中裁剪
+     */
+    private fun centerCrop(width: Int, height: Int) {
+        var picWidth = mPicWidth.toFloat()
+        var picHeight = mPicHeight.toFloat()
+        val picRatio = picWidth / picHeight
+        val screenRatio = width / height.toFloat()
+        var scaleX: Float = 1.0f
+        var scaleY: Float = 1.0f
+        if (screenRatio > picRatio) {
+            picWidth = width.toFloat()
+            picHeight = picWidth / picRatio
+            scaleX = 1.0f
+            scaleY = height / picHeight
+        } else {
+            picHeight = height.toFloat()
+            picWidth = picHeight * picRatio
+            scaleX = width / picWidth
+            scaleY = 1.0f
+        }
+        Matrix.translateM(mStMatrix, 0, (1.0f - scaleX) / 2f, (1.0f - scaleY) / 2f, 1.0f)
+        Matrix.scaleM(mStMatrix, 0, scaleX, scaleY, 1.0f)
     }
 
     override fun onDrawFrame(glUnused: GL10?) {

@@ -26,19 +26,29 @@ class PictureLoadActivity : AppCompatActivity() {
 
     private fun initClick() {
         btn_horizontal.isSelected = true
-        addGlSurfaceView(9f/16f)
+        addGlSurfaceView(9f / 16f)
         btn_horizontal.setOnClickListener {
             if (!btn_horizontal.isSelected) {
                 btn_horizontal.isSelected = true
                 btn_vertical.isSelected = false
-                addGlSurfaceView(9f/16f)
+                btn_square.isSelected = false
+                addGlSurfaceView(9f / 16f)
             }
         }
         btn_vertical.setOnClickListener {
             if (!btn_vertical.isSelected) {
                 btn_vertical.isSelected = true
                 btn_horizontal.isSelected = false
-                addGlSurfaceView(16f/9f)
+                btn_square.isSelected = false
+                addGlSurfaceView(16f / 9f)
+            }
+        }
+        btn_square.setOnClickListener {
+            if (!btn_square.isSelected) {
+                btn_square.isSelected = true
+                btn_horizontal.isSelected = false
+                btn_vertical.isSelected = false
+                addGlSurfaceView(1f / 1f)
             }
         }
     }
