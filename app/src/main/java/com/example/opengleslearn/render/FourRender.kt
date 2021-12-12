@@ -4,7 +4,6 @@ import android.content.Context
 import android.opengl.GLES10.glClear
 import android.opengl.GLES10.glViewport
 import android.opengl.GLES20.*
-import android.opengl.GLSurfaceView
 import android.opengl.Matrix
 import android.opengl.Matrix.rotateM
 import android.opengl.Matrix.setIdentityM
@@ -25,9 +24,8 @@ import javax.microedition.khronos.opengles.GL10
 　　* @author 刘宇飞
 　　* @date  2021/2/28 13:27
 　　*/
-class FourRender(context: Context) : GLSurfaceView.Renderer {
+class FourRender(context: Context) :  CommonRenderer() {
     private val mContext: Context = context
-    private var mProgram: Int = 0
     private var mColorLocation = 0
     private var mPositionLocation = 0
     private var mMatrixLocation = 0

@@ -4,7 +4,6 @@ import android.content.Context
 import android.opengl.GLES10.glClear
 import android.opengl.GLES10.glViewport
 import android.opengl.GLES20.*
-import android.opengl.GLSurfaceView
 import android.opengl.Matrix
 import android.opengl.Matrix.orthoM
 import com.example.opengleslearn.R
@@ -24,9 +23,8 @@ import javax.microedition.khronos.opengles.GL10
 　　* @author 刘宇飞
 　　* @date  2021/2/28 13:27
 　　*/
-class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
+class PictureLoadRender(context: Context) : CommonRenderer() {
     private val mContext: Context = context
-    private var mProgram: Int = 0
     private var mPositionLocation = 0
     private var mTextureLocation = 0
     private var mTextureUnitLocation = 0
@@ -134,7 +132,7 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
             0,
             mVertexData
         )
-        glEnableVertexAttribArray(mPositionLocation)
+//        glEnableVertexAttribArray(mPositionLocation)
         mTextureData?.position(0)
         glVertexAttribPointer(
             mTextureLocation,
@@ -144,7 +142,7 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
             0,
             mTextureData
         )
-        glEnableVertexAttribArray(mTextureLocation)
+//        glEnableVertexAttribArray(mTextureLocation)
     }
 
     override fun onSurfaceChanged(p0: GL10?, width: Int, height: Int) {
@@ -162,8 +160,8 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
     private fun centerInsert(width: Int, height: Int) {
         val projectionMatrix = FloatArray(16)
         val viewMatrix = FloatArray(16)
-        var picWidth = mPicWidth.toFloat()
-        var picHeight = mPicHeight.toFloat()
+        val picWidth = mPicWidth.toFloat()
+        val picHeight = mPicHeight.toFloat()
         val picRatio = picWidth / picHeight
         val screenRatio = width / height.toFloat()
         if (width > height) {
@@ -248,22 +246,39 @@ class PictureLoadRender(context: Context) : GLSurfaceView.Renderer {
 
     override fun onDrawFrame(glUnused: GL10?) {
         glClear(GL_COLOR_BUFFER_BIT)
+        drawBackGround()
+
+
+
+    }
+
+    /**
+     * 绘制背景
+     */
+    private fun drawBackGround() {
+
         glUseProgram(mProgram)
         // 传入矩阵
         glUniformMatrix4fv(mMvpMatrixLocation, 1, false, mMvpMatrix, 0)
         glUniformMatrix4fv(mStMatrixLocation, 1, false, mStMatrix, 0)
+        glEnableVertexAttribArray(mPositionLocation)
+        glEnableVertexAttribArray(mTextureLocation)
         // 绑定纹理
         glActiveTexture(GL_TEXTURE0)
         glBindTexture(GL_TEXTURE_2D, mTexture)
         glUniform1i(mTextureUnitLocation, 0)
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4)
         bindDate()
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, 4)
+        // 释放使用
+        glDisableVertexAttribArray(mPositionLocation)
+        glDisableVertexAttribArray(mTextureLocation)
+        glBindTexture(GL_TEXTURE_2D, 0)
+    }
 
-//        glDisableVertexAttribArray(mPositionLocation)
-//        glDisableVertexAttribArray(mTextureLocation)
-//        glBindTexture(GL_TEXTURE_2D, 0)
-
-
+    override fun onDestroy(){
+        if (mTexture > 0) {
+            glDeleteTextures(0, intArrayOf(mTexture), 0)
+        }
     }
 
 

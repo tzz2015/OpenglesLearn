@@ -76,5 +76,12 @@ class PictureLoadActivity : AppCompatActivity() {
         mGlSurfaceView.onPause()
     }
 
+    override fun onDestroy() {
+        super.onDestroy()
+        mGlSurfaceView.onDestroy()
+    }
+
 
 }
+
+

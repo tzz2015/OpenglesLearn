@@ -2,7 +2,6 @@ package com.example.opengleslearn.render
 
 import android.content.Context
 import android.opengl.GLES20
-import android.opengl.GLSurfaceView
 import android.opengl.Matrix
 import android.util.Log
 import com.example.opengleslearn.R
@@ -24,7 +23,7 @@ import javax.microedition.khronos.opengles.GL10
 　　* @author 刘宇飞
 　　* @date  2021/2/28 13:27
 　　*/
-class SevenRender(context: Context) : GLSurfaceView.Renderer {
+class SevenRender(context: Context) : CommonRenderer() {
     private val TAG = this.javaClass.name
     private val mContext: Context = context
     private val projectionMatrix = FloatArray(16)
