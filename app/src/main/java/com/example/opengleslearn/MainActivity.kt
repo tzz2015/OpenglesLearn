@@ -37,6 +37,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_shader6 -> startActivity(Intent(this, SevenActivity::class.java))
             R.id.action_shader7 -> startActivity(Intent(this, ParticleActivity::class.java))
             R.id.action_shader8 -> startActivity(Intent(this, PictureLoadActivity::class.java))
+            R.id.action_shader9 -> startActivity(Intent(this, AnimationActivity::class.java))
         }
         return true
     }

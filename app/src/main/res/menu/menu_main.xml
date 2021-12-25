@@ -56,6 +56,12 @@
         android:title="图片渲染"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_shader9"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="矩阵动画"
+        app:showAsAction="never" />
+
     
 
 </menu>
