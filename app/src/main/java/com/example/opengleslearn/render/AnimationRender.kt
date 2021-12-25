@@ -30,6 +30,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mMvpMatrixLocation = 0
     private var mStMatrixLocation = 0
     private val mMvpMatrix = FloatArray(16)
+    private val mCropMatrix = FloatArray(16)
     private val mStMatrix = FloatArray(16)
     private var mBgTexture: Int = 0
     private var mPicWidth: Int = 0
@@ -79,6 +80,17 @@ class AnimationRender(context: Context) : CommonRenderer() {
             .asFloatBuffer()
         mTextureData?.put(textureData)
     }
+
+    override fun setMvpMatrix(matrix: FloatArray) {
+        Matrix.setIdentityM(mMvpMatrix, 0)
+        System.arraycopy(matrix, 0, mMvpMatrix, 0, mMvpMatrix.size)
+    }
+
+    override fun setStMatrix(matrix: FloatArray) {
+        Matrix.setIdentityM(mStMatrix, 0)
+        Matrix.multiplyMM(mStMatrix, 0, mCropMatrix, 0, matrix, 0)
+    }
+
 
     override fun onSurfaceCreated(glUnused: GL10?, config: EGLConfig?) {
         if (mProgram > 0) {
@@ -153,7 +165,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
      */
     private fun centerInsert() {
         Matrix.setIdentityM(mMvpMatrix, 0)
-        Matrix.setIdentityM(mStMatrix, 0)
+        Matrix.setIdentityM(mCropMatrix, 0)
         val projectionMatrix = FloatArray(16)
         val viewMatrix = FloatArray(16)
         val picWidth = mPicWidth.toFloat()
@@ -220,6 +232,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
      */
     private fun centerCrop() {
         Matrix.setIdentityM(mMvpMatrix, 0)
+        Matrix.setIdentityM(mCropMatrix, 0)
         Matrix.setIdentityM(mStMatrix, 0)
         var picWidth = mPicWidth.toFloat()
         var picHeight = mPicHeight.toFloat()
@@ -238,8 +251,10 @@ class AnimationRender(context: Context) : CommonRenderer() {
             scaleX = mViewWidth / picWidth
             scaleY = 1.0f
         }
-        Matrix.translateM(mStMatrix, 0, (1.0f - scaleX) / 2f, (1.0f - scaleY) / 2f, 1.0f)
-        Matrix.scaleM(mStMatrix, 0, scaleX, scaleY, 1.0f)
+        Matrix.translateM(mCropMatrix, 0, (1.0f - scaleX) / 2f, (1.0f - scaleY) / 2f, 1.0f)
+        Matrix.scaleM(mCropMatrix, 0, scaleX, scaleY, 1.0f)
+        System.arraycopy(mStMatrix, 0, mCropMatrix, 0, mCropMatrix.size)
+
     }
 
     override fun onDrawFrame(glUnused: GL10?) {

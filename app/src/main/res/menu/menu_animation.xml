@@ -1,0 +1,34 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.byteflow.openglcamera2.MainActivity">
+
+    <item
+        android:id="@+id/action_shader0"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="左入"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader1"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="右入"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader2"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="上入"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader3"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="下入"
+        app:showAsAction="never" />
+
+
+
+
+
+</menu>

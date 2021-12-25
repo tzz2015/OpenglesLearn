@@ -10,6 +10,19 @@ abstract class CommonRenderer : GLSurfaceView.Renderer {
     protected var mViewWidth: Int = 0
     protected var mViewHeight: Int = 0
 
+    /**
+     * 顶点矩阵
+     */
+    open fun setMvpMatrix(matrix: FloatArray) {
+
+    }
+
+    /**
+     * 纹理矩阵
+     */
+    open fun setStMatrix(matrix: FloatArray) {
+
+    }
 
     override fun onSurfaceChanged(p0: GL10?, width: Int, height: Int) {
         GLES10.glViewport(0, 0, width, height)

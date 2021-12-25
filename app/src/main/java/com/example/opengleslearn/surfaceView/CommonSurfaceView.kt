@@ -15,9 +15,25 @@ class CommonSurfaceView(context: Context, renderer: CommonRenderer) : GLSurfaceV
 
     init {
         setEGLContextClientVersion(2)
-        setEGLConfigChooser(8 , 8, 8, 8, 16, 0)
+        setEGLConfigChooser(8, 8, 8, 8, 16, 0)
         setRenderer(mRender)
         renderMode = RENDERMODE_WHEN_DIRTY
+    }
+
+    /**
+     * 顶点矩阵
+     */
+    fun setMvpMatrix(matrix: FloatArray) {
+        mRender.setMvpMatrix(matrix)
+        requestRender()
+    }
+
+    /**
+     * 纹理矩阵
+     */
+    fun setStMatrix(matrix: FloatArray) {
+        mRender.setStMatrix(matrix)
+        requestRender()
     }
 
     fun onDestroy() {

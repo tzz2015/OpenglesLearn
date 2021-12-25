@@ -1,6 +1,15 @@
 package com.example.opengleslearn.animation
 
+import android.opengl.Matrix
+
 abstract class BaseAnimation : IAnimation {
+    val mProjectMatrix = FloatArray(16)
+    val mModelMatrix = FloatArray(16)
+
+    init {
+        Matrix.setIdentityM(mProjectMatrix, 0)
+        Matrix.setIdentityM(mModelMatrix, 0)
+    }
 
     override fun setAlpha(alpha: Float) {
 
