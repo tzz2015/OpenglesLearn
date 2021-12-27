@@ -14,7 +14,7 @@ import com.example.opengleslearn.surfaceView.CommonSurfaceView
 import kotlinx.android.synthetic.main.activity_animation.*
 import kotlinx.android.synthetic.main.activity_picture_load.fl_surface_root
 
-class AnimationActivity : AppCompatActivity() {
+class AnimationOutActivity : AppCompatActivity() {
     private val mGlSurfaceView: CommonSurfaceView by lazy {
         CommonSurfaceView(
             this,
@@ -64,7 +64,7 @@ class AnimationActivity : AppCompatActivity() {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.menu_animation, menu)
+        menuInflater.inflate(R.menu.menu_out_animation, menu)
         return true
     }
 
@@ -73,12 +73,15 @@ class AnimationActivity : AppCompatActivity() {
         Log.e(TAG, item.title.toString())
         tv_animation_name.text = "当前动画：${item.title}"
         when (item.itemId) {
-            R.id.action_shader0 -> mAnimation = MoveAnimation(MoveAnimationType.LEFT)
-            R.id.action_shader1 -> mAnimation = MoveAnimation(MoveAnimationType.RIGHT)
-            R.id.action_shader2 -> mAnimation = MoveAnimation(MoveAnimationType.TOP)
-            R.id.action_shader3 -> mAnimation = MoveAnimation(MoveAnimationType.BOTTOM)
-            R.id.action_shader4 -> mAnimation = CenterOpenAnimation()
-            R.id.action_shader5 -> mAnimation = RotateAnimation()
+            R.id.action_fade_out -> mAnimation = FadeAnimation(false)
+            R.id.action_zoom_slightly -> mAnimation = ZoomSlightlyAnimation(false)
+            R.id.action_zoom_I -> mAnimation = ZoomSecondAnimation(false)
+            R.id.action_shader0 -> mAnimation = MoveAnimation(false, MoveAnimationType.LEFT)
+            R.id.action_shader1 -> mAnimation = MoveAnimation(false, MoveAnimationType.RIGHT)
+            R.id.action_shader2 -> mAnimation = MoveAnimation(false, MoveAnimationType.TOP)
+            R.id.action_shader3 -> mAnimation = MoveAnimation(false, MoveAnimationType.BOTTOM)
+            R.id.action_shader4 -> mAnimation = FlipAnimation(false)
+            R.id.action_shader5 -> mAnimation = RotateAnimation(false)
 
         }
         updateAnimation(seekbar.progress / 100f)

@@ -9,7 +9,6 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activity.AnimationActivity"></activity>
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,6 +25,9 @@
         <activity android:name=".activity.SevenActivity" />
         <activity android:name=".activity.ParticleActivity" />
         <activity android:name=".activity.PictureLoadActivity" />
+        <activity android:name=".activity.AnimationIntActivity"/>
+        <activity android:name=".activity.AnimationOutActivity"/>
+
     </application>
 
 </manifest>

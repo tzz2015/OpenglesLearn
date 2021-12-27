@@ -2,7 +2,21 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="com.byteflow.openglcamera2.MainActivity">
-
+    <item
+        android:id="@+id/action_fade_out"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Fade Out渐隐"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_zoom_slightly"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Zoom In1轻微放大"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_zoom_I"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Zoom In2放大I"
+        app:showAsAction="never" />
     <item
         android:id="@+id/action_shader0"
         android:icon="@drawable/ic_aspect_sample"
@@ -37,9 +51,6 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="旋转"
         app:showAsAction="never" />
-
-
-
 
 
 </menu>

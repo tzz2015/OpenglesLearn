@@ -6,10 +6,7 @@ import android.opengl.GLES20.*
 import android.opengl.Matrix
 import android.opengl.Matrix.orthoM
 import com.example.opengleslearn.R
-import com.example.opengleslearn.util.LoggerConfig
-import com.example.opengleslearn.util.ShaderHelper
-import com.example.opengleslearn.util.TextResourceReader
-import com.example.opengleslearn.util.TextureHelper
+import com.example.opengleslearn.util.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
 import java.nio.FloatBuffer
@@ -86,12 +83,13 @@ class AnimationRender(context: Context) : CommonRenderer() {
 
     override fun setMvpMatrix(matrix: FloatArray) {
         Matrix.setIdentityM(mMvpMatrix, 0)
-        System.arraycopy(matrix, 0, mMvpMatrix, 0, mMvpMatrix.size)
+        Matrix.multiplyMM(mMvpMatrix, 0, mCropMatrix, 0, matrix, 0)
     }
 
     override fun setStMatrix(matrix: FloatArray) {
         Matrix.setIdentityM(mStMatrix, 0)
-        Matrix.multiplyMM(mStMatrix, 0, mCropMatrix, 0, matrix, 0)
+        System.arraycopy(matrix, 0, mStMatrix, 0, mStMatrix.size)
+
     }
 
     override fun setAlpha(alpha: Float) {
@@ -165,8 +163,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
 
     override fun onSurfaceChanged(p0: GL10?, width: Int, height: Int) {
         super.onSurfaceChanged(p0, width, height)
-        centerCrop()
-//        centerInsert(width,height)
+        centerInsert()
     }
 
     /**
@@ -174,6 +171,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
      */
     private fun centerInsert() {
         Matrix.setIdentityM(mMvpMatrix, 0)
+        Matrix.setIdentityM(mStMatrix, 0)
         Matrix.setIdentityM(mCropMatrix, 0)
         val projectionMatrix = FloatArray(16)
         val viewMatrix = FloatArray(16)
@@ -233,38 +231,14 @@ class AnimationRender(context: Context) : CommonRenderer() {
         //设置相机位置
         Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, 7.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f)
         //计算变换矩阵
-        Matrix.multiplyMM(mMvpMatrix, 0, projectionMatrix, 0, viewMatrix, 0)
-    }
+        Matrix.multiplyMM(mCropMatrix, 0, projectionMatrix, 0, viewMatrix, 0)
+        Constants.MAX_HORIZONTAL_OFFSET = 2.0f - mCropMatrix[0]
+        Constants.MAX_VERTICAL_OFFSET = 2.0f - mCropMatrix[5]
+        System.arraycopy(mCropMatrix, 0, mMvpMatrix, 0, mMvpMatrix.size)
 
-    /**
-     * 居中裁剪
-     */
-    private fun centerCrop() {
-        Matrix.setIdentityM(mMvpMatrix, 0)
-        Matrix.setIdentityM(mCropMatrix, 0)
-        Matrix.setIdentityM(mStMatrix, 0)
-        var picWidth = mPicWidth.toFloat()
-        var picHeight = mPicHeight.toFloat()
-        val picRatio = picWidth / picHeight
-        val screenRatio = mViewWidth / mViewHeight.toFloat()
-        var scaleX: Float = 1.0f
-        var scaleY: Float = 1.0f
-        if (screenRatio > picRatio) {
-            picWidth = mViewWidth.toFloat()
-            picHeight = picWidth / picRatio
-            scaleX = 1.0f
-            scaleY = mViewHeight / picHeight
-        } else {
-            picHeight = mViewHeight.toFloat()
-            picWidth = picHeight * picRatio
-            scaleX = mViewWidth / picWidth
-            scaleY = 1.0f
-        }
-        Matrix.translateM(mCropMatrix, 0, (1.0f - scaleX) / 2f, (1.0f - scaleY) / 2f, 1.0f)
-        Matrix.scaleM(mCropMatrix, 0, scaleX, scaleY, 1.0f)
-        System.arraycopy(mStMatrix, 0, mCropMatrix, 0, mCropMatrix.size)
 
     }
+
 
     override fun onDrawFrame(glUnused: GL10?) {
         glClear(GL_COLOR_BUFFER_BIT)

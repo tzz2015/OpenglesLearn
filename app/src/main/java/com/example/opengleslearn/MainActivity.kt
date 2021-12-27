@@ -7,6 +7,7 @@ import android.view.Menu
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
 import com.example.opengleslearn.activity.*
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -17,6 +18,12 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        initClick()
+    }
+
+    private fun initClick() {
+        btn_in_animation.setOnClickListener { startActivity(Intent(this, AnimationIntActivity::class.java)) }
+        btn_out_animation.setOnClickListener { startActivity(Intent(this, AnimationOutActivity::class.java)) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -37,7 +44,7 @@ class MainActivity : AppCompatActivity() {
             R.id.action_shader6 -> startActivity(Intent(this, SevenActivity::class.java))
             R.id.action_shader7 -> startActivity(Intent(this, ParticleActivity::class.java))
             R.id.action_shader8 -> startActivity(Intent(this, PictureLoadActivity::class.java))
-            R.id.action_shader9 -> startActivity(Intent(this, AnimationActivity::class.java))
+            R.id.action_shader9 -> startActivity(Intent(this, AnimationIntActivity::class.java))
         }
         return true
     }

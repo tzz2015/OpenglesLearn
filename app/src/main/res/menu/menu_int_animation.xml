@@ -1,0 +1,59 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.byteflow.openglcamera2.MainActivity">
+
+    <item
+        android:id="@+id/action_fade_int"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Fade In渐显"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_zoom_slightly"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Zoom In1轻微放大"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_zoom_I"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Zoom In2放大I"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader0"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Slide L向左滑动"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader1"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Slide R向右滑动"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader2"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Slide U向上滑动"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader3"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Slide D向下滑动"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader4"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Flip镜像翻转"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_shader5"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="旋转"
+        app:showAsAction="never" />
+
+
+</menu>

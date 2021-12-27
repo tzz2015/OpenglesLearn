@@ -10,4 +10,7 @@ package com.example.opengleslearn.util;
 
 public class Constants {
     public static final int BYTES_PER_FLOAT = 4;
+    public static float MAX_HORIZONTAL_OFFSET;
+    public static float MAX_VERTICAL_OFFSET;
+
 }
