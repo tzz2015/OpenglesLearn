@@ -5,6 +5,7 @@ import android.opengl.Matrix
 abstract class BaseAnimation : IAnimation {
     val mProjectMatrix = FloatArray(16)
     val mModelMatrix = FloatArray(16)
+    var mAlpha: Float = 1.0f
 
     init {
         Matrix.setIdentityM(mProjectMatrix, 0)
@@ -12,7 +13,7 @@ abstract class BaseAnimation : IAnimation {
     }
 
     override fun setAlpha(alpha: Float) {
-
+        mAlpha = alpha
     }
 
     /**

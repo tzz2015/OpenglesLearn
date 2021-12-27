@@ -25,7 +25,6 @@ class CommonSurfaceView(context: Context, renderer: CommonRenderer) : GLSurfaceV
      */
     fun setMvpMatrix(matrix: FloatArray) {
         mRender.setMvpMatrix(matrix)
-        requestRender()
     }
 
     /**
@@ -33,7 +32,10 @@ class CommonSurfaceView(context: Context, renderer: CommonRenderer) : GLSurfaceV
      */
     fun setStMatrix(matrix: FloatArray) {
         mRender.setStMatrix(matrix)
-        requestRender()
+    }
+
+    fun setRenderAlpha(alpha: Float) {
+        mRender.setAlpha(alpha)
     }
 
     fun onDestroy() {

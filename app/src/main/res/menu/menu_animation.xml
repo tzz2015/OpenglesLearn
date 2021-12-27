@@ -6,25 +6,36 @@
     <item
         android:id="@+id/action_shader0"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="左入"
+        android:title="Slide L向左滑动"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_shader1"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="右入"
+        android:title="Slide R向右滑动"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_shader2"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="上入"
+        android:title="Slide U向上滑动"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/action_shader3"
         android:icon="@drawable/ic_aspect_sample"
-        android:title="下入"
+        android:title="Slide D向下滑动"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_shader4"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Flip镜像翻转"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_shader5"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="旋转"
         app:showAsAction="never" />
 
 

@@ -24,6 +24,13 @@ abstract class CommonRenderer : GLSurfaceView.Renderer {
 
     }
 
+    /**
+     * 透明度
+     */
+    open fun setAlpha(alpha:Float){
+
+    }
+
     override fun onSurfaceChanged(p0: GL10?, width: Int, height: Int) {
         GLES10.glViewport(0, 0, width, height)
         mViewWidth = width

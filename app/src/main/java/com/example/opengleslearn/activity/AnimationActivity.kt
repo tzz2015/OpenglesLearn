@@ -8,9 +8,7 @@ import android.view.MenuItem
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.opengleslearn.R
-import com.example.opengleslearn.animation.BaseAnimation
-import com.example.opengleslearn.animation.MoveAnimation
-import com.example.opengleslearn.animation.MoveAnimationType
+import com.example.opengleslearn.animation.*
 import com.example.opengleslearn.render.AnimationRender
 import com.example.opengleslearn.surfaceView.CommonSurfaceView
 import kotlinx.android.synthetic.main.activity_animation.*
@@ -56,10 +54,13 @@ class AnimationActivity : AppCompatActivity() {
      * 更新动画
      */
     private fun updateAnimation(progress: Float) {
-      mAnimation?.run {
-          setProgress(progress)
-          mGlSurfaceView.setMvpMatrix(mProjectMatrix)
-      }
+        mAnimation?.run {
+            setProgress(progress)
+            mGlSurfaceView.setMvpMatrix(mProjectMatrix)
+            mGlSurfaceView.setStMatrix(mModelMatrix)
+            mGlSurfaceView.setRenderAlpha(mAlpha)
+            mGlSurfaceView.requestRender()
+        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -76,6 +77,9 @@ class AnimationActivity : AppCompatActivity() {
             R.id.action_shader1 -> mAnimation = MoveAnimation(MoveAnimationType.RIGHT)
             R.id.action_shader2 -> mAnimation = MoveAnimation(MoveAnimationType.TOP)
             R.id.action_shader3 -> mAnimation = MoveAnimation(MoveAnimationType.BOTTOM)
+            R.id.action_shader4 -> mAnimation = CenterOpenAnimation()
+            R.id.action_shader5 -> mAnimation = RotateAnimation()
+
         }
         updateAnimation(seekbar.progress / 100f)
         return true

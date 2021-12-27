@@ -27,6 +27,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mPositionLocation = 0
     private var mTextureLocation = 0
     private var mTextureUnitLocation = 0
+    private var mAlphaLocation = 0
     private var mMvpMatrixLocation = 0
     private var mStMatrixLocation = 0
     private val mMvpMatrix = FloatArray(16)
@@ -35,6 +36,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mBgTexture: Int = 0
     private var mPicWidth: Int = 0
     private var mPicHeight: Int = 0
+    private var mAlpha: Float = 1.0f
 
 
     companion object {
@@ -44,6 +46,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
         const val U_MVP_MATRIX = "uMVPMatrix"
         const val U_ST_MATRIX = "uSTMatrix"
         const val U_TEXTURE_UNIT = "u_TextureUnit"
+        const val U_ALPHA = "alpha"
         const val POSITION_COMPONENT_COUNT = 2
         const val STRIDE = (POSITION_COMPONENT_COUNT) * BYTES_PER_FLOAT
     }
@@ -91,6 +94,10 @@ class AnimationRender(context: Context) : CommonRenderer() {
         Matrix.multiplyMM(mStMatrix, 0, mCropMatrix, 0, matrix, 0)
     }
 
+    override fun setAlpha(alpha: Float) {
+        mAlpha = alpha
+    }
+
 
     override fun onSurfaceCreated(glUnused: GL10?, config: EGLConfig?) {
         if (mProgram > 0) {
@@ -101,7 +108,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
         val vertexShaderSource = TextResourceReader
             .readTextFileFromResource(mContext, R.raw.picture_load_vertex_shader)
         val fragmentShaderSource = TextResourceReader
-            .readTextFileFromResource(mContext, R.raw.five_fragment_shader)
+            .readTextFileFromResource(mContext, R.raw.animation_fragment_shader)
         // 编译着色器源码 生成着色器id
         val vertexShader = ShaderHelper.compileVertexShader(vertexShaderSource)
         val fragmentShader = ShaderHelper.compileFragmentShader(fragmentShaderSource)
@@ -115,6 +122,8 @@ class AnimationRender(context: Context) : CommonRenderer() {
         mTextureLocation = glGetAttribLocation(mProgram, A_TEXTURE_COORDINATES)
         // 创建纹理
         mTextureUnitLocation = glGetUniformLocation(mProgram, U_TEXTURE_UNIT)
+        // 创建透明度桩位
+        mAlphaLocation = glGetUniformLocation(mProgram, U_ALPHA)
 
         // 创建一个MVP矩阵位置
         mMvpMatrixLocation = glGetUniformLocation(mProgram, U_MVP_MATRIX)
@@ -271,6 +280,8 @@ class AnimationRender(context: Context) : CommonRenderer() {
         // 传入矩阵
         glUniformMatrix4fv(mMvpMatrixLocation, 1, false, mMvpMatrix, 0)
         glUniformMatrix4fv(mStMatrixLocation, 1, false, mStMatrix, 0)
+        // 透明度
+        glUniform1f(mAlphaLocation, mAlpha)
         glEnableVertexAttribArray(mPositionLocation)
         glEnableVertexAttribArray(mTextureLocation)
         // 绑定纹理
