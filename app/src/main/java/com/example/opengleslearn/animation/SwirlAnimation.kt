@@ -17,8 +17,11 @@ class SwirlAnimation() : BaseAnimation() {
         Matrix.setIdentityM(mProjectMatrix, 0)
         val rotate = if (mIsIntAnimation) 90f - 90 * progress else 90f * progress
 
-        Matrix.rotateM(mProjectMatrix, 0, rotate, 0f, 0f, 1f)
-
+//        Matrix.rotateM(mProjectMatrix, 0, rotate, 0f, 0f, 1f)
+        val newCenter = FloatArray(2)
+        Matrix3DUtils.preTranslateM(mProjectMatrix, -newCenter[0], -newCenter[1], 0f)
+        Matrix3DUtils.preRotateM(mProjectMatrix,  rotate, 0f, 0f, 1f)
+        Matrix3DUtils.preTranslateM(mProjectMatrix, newCenter[0], newCenter[1], 0f)
 
     }
 }
