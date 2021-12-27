@@ -82,7 +82,7 @@ class AnimationOutActivity : AppCompatActivity() {
             R.id.action_shader3 -> mAnimation = MoveAnimation(false, MoveAnimationType.BOTTOM)
             R.id.action_shader4 -> mAnimation = FlipAnimation(false)
             R.id.action_shader5 -> mAnimation = RotateAnimation(false)
-
+            R.id.action_shader6 -> mAnimation = SwirlAnimation(false)
         }
         updateAnimation(seekbar.progress / 100f)
         return true

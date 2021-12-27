@@ -17,6 +17,7 @@ abstract class BaseAnimation : IAnimation {
         mAlpha = alpha
     }
 
+
     /**
      * 先快后慢或者先慢后快
      */

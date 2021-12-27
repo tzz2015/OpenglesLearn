@@ -38,6 +38,7 @@ class CommonSurfaceView(context: Context, renderer: CommonRenderer) : GLSurfaceV
         mRender.setAlpha(alpha)
     }
 
+
     fun onDestroy() {
         mRender.onDestroy()
     }

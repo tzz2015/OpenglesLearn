@@ -3,6 +3,7 @@ package com.example.opengleslearn.render
 import android.opengl.GLES10
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
+import android.opengl.Matrix
 import javax.microedition.khronos.opengles.GL10
 
 abstract class CommonRenderer : GLSurfaceView.Renderer {
@@ -24,10 +25,18 @@ abstract class CommonRenderer : GLSurfaceView.Renderer {
 
     }
 
+
     /**
      * 透明度
      */
-    open fun setAlpha(alpha:Float){
+    open fun setAlpha(alpha: Float) {
+
+    }
+
+    /**
+     * 设置脚本类型
+     */
+    open fun setShapeType(type: Int) {
 
     }
 

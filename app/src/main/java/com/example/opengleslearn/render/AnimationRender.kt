@@ -6,6 +6,7 @@ import android.opengl.GLES20.*
 import android.opengl.Matrix
 import android.opengl.Matrix.orthoM
 import com.example.opengleslearn.R
+import com.example.opengleslearn.animation.AnimationShapeType
 import com.example.opengleslearn.util.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder
@@ -34,7 +35,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mPicWidth: Int = 0
     private var mPicHeight: Int = 0
     private var mAlpha: Float = 1.0f
-
+    private var mShapeType: Int = AnimationShapeType.DEFEAT
 
     companion object {
         const val BYTES_PER_FLOAT = 4
@@ -96,25 +97,32 @@ class AnimationRender(context: Context) : CommonRenderer() {
         mAlpha = alpha
     }
 
+    override fun setShapeType(type: Int) {
+        this.mShapeType = type
+        createProgram()
+    }
+
 
     override fun onSurfaceCreated(glUnused: GL10?, config: EGLConfig?) {
+        createProgram()
+    }
+
+    private fun createProgram() {
         if (mProgram > 0) {
             glDeleteProgram(mProgram)
         }
         glClearColor(0.0f, 0.0f, 0.0f, 0.0f)
+
         // 加载着色器源码
         val vertexShaderSource = TextResourceReader
             .readTextFileFromResource(mContext, R.raw.picture_load_vertex_shader)
         val fragmentShaderSource = TextResourceReader
-            .readTextFileFromResource(mContext, R.raw.animation_fragment_shader)
+            .readTextFileFromResource(mContext, getFragmentShader())
         // 编译着色器源码 生成着色器id
         val vertexShader = ShaderHelper.compileVertexShader(vertexShaderSource)
         val fragmentShader = ShaderHelper.compileFragmentShader(fragmentShaderSource)
         // 连接顶点着色器和片段着色器得到单个程序
         mProgram = ShaderHelper.linkProgram(vertexShader, fragmentShader)
-        if (LoggerConfig.ON) {
-            ShaderHelper.validateProgram(mProgram)
-        }
         // 创建属性位置
         mPositionLocation = glGetAttribLocation(mProgram, A_POSITION)
         mTextureLocation = glGetAttribLocation(mProgram, A_TEXTURE_COORDINATES)
@@ -136,7 +144,16 @@ class AnimationRender(context: Context) : CommonRenderer() {
         mBgTexture = loadTexture[0]
         mPicWidth = loadTexture[1]
         mPicHeight = loadTexture[2]
+    }
 
+    /**
+     * 根据类型获取脚本
+     */
+    private fun getFragmentShader(): Int {
+        when (mShapeType) {
+            AnimationShapeType.SWIRL -> return R.raw.animation_swirl_fragment_shader
+        }
+        return R.raw.animation_fragment_shader
     }
 
     private fun bindDate() {

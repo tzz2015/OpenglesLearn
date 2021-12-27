@@ -54,6 +54,11 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="旋转"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_shader6"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Swirl漩涡旋入"
+        app:showAsAction="never" />
 
 
 </menu>
