@@ -4,6 +4,7 @@ import android.opengl.GLES10
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
 import android.opengl.Matrix
+import com.example.opengleslearn.animation.AnimationShapeType
 import javax.microedition.khronos.opengles.GL10
 
 abstract class CommonRenderer : GLSurfaceView.Renderer {
@@ -37,6 +38,14 @@ abstract class CommonRenderer : GLSurfaceView.Renderer {
      * 设置脚本类型
      */
     open fun setShapeType(type: Int) {
+
+    }
+
+    open fun getShapeType(): Int {
+        return AnimationShapeType.DEFEAT
+    }
+
+    open fun setProgress(progress:Float){
 
     }
 

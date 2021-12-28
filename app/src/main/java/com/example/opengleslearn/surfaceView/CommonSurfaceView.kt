@@ -20,6 +20,10 @@ class CommonSurfaceView(context: Context, renderer: CommonRenderer) : GLSurfaceV
         renderMode = RENDERMODE_WHEN_DIRTY
     }
 
+    fun getRender(): CommonRenderer {
+        return mRender
+    }
+
     /**
      * 顶点矩阵
      */
@@ -36,6 +40,18 @@ class CommonSurfaceView(context: Context, renderer: CommonRenderer) : GLSurfaceV
 
     fun setRenderAlpha(alpha: Float) {
         mRender.setAlpha(alpha)
+    }
+
+    fun setShapeType(type: Int) {
+        mRender.setShapeType(type)
+    }
+
+    fun getShapeType(): Int {
+        return mRender.getShapeType()
+    }
+
+    fun setProgress(progress: Float) {
+        mRender.setProgress(progress)
     }
 
 

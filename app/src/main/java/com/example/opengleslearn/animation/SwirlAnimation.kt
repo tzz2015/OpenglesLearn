@@ -14,14 +14,16 @@ class SwirlAnimation() : BaseAnimation() {
     }
 
     override fun setProgress(progress: Float) {
-        Matrix.setIdentityM(mProjectMatrix, 0)
-        val rotate = if (mIsIntAnimation) 90f - 90 * progress else 90f * progress
+        Matrix.setIdentityM(mModelMatrix, 0)
+        val rotate = if (mIsIntAnimation) 90f - 90 * progress else -90f * progress
 
-//        Matrix.rotateM(mProjectMatrix, 0, rotate, 0f, 0f, 1f)
         val newCenter = FloatArray(2)
-        Matrix3DUtils.preTranslateM(mProjectMatrix, -newCenter[0], -newCenter[1], 0f)
-        Matrix3DUtils.preRotateM(mProjectMatrix,  rotate, 0f, 0f, 1f)
-        Matrix3DUtils.preTranslateM(mProjectMatrix, newCenter[0], newCenter[1], 0f)
+        newCenter[0] = 0.5f
+        newCenter[1] = 0.5f
+
+        Matrix3DUtils.preTranslateM(mModelMatrix, -newCenter[0], -newCenter[1], 0f)
+        Matrix3DUtils.preRotateM(mModelMatrix, rotate, 0f, 0f, 1f)
+        Matrix3DUtils.preTranslateM(mModelMatrix, newCenter[0], newCenter[1], 0f)
 
     }
 }

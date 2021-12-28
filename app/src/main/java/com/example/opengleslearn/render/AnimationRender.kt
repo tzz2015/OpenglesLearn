@@ -26,6 +26,9 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mTextureLocation = 0
     private var mTextureUnitLocation = 0
     private var mAlphaLocation = 0
+    private var mDirectionLocation = 0
+    private var mProgressLocation = 0
+    private var mInputSizeLocation = 0
     private var mMvpMatrixLocation = 0
     private var mStMatrixLocation = 0
     private val mMvpMatrix = FloatArray(16)
@@ -36,6 +39,8 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mPicHeight: Int = 0
     private var mAlpha: Float = 1.0f
     private var mShapeType: Int = AnimationShapeType.DEFEAT
+    var mDirection: Int = 0
+    private var mProgress: Float = 0f
 
     companion object {
         const val BYTES_PER_FLOAT = 4
@@ -45,8 +50,10 @@ class AnimationRender(context: Context) : CommonRenderer() {
         const val U_ST_MATRIX = "uSTMatrix"
         const val U_TEXTURE_UNIT = "u_TextureUnit"
         const val U_ALPHA = "alpha"
+        const val U_INPUT_SIZE = "inputSize"
+        const val U_DIRECTION = "direction"
+        const val U_PROGRESS = "progress"
         const val POSITION_COMPONENT_COUNT = 2
-        const val STRIDE = (POSITION_COMPONENT_COUNT) * BYTES_PER_FLOAT
     }
 
     // 需要开辟的顶点空间
@@ -99,7 +106,14 @@ class AnimationRender(context: Context) : CommonRenderer() {
 
     override fun setShapeType(type: Int) {
         this.mShapeType = type
-        createProgram()
+    }
+
+    override fun getShapeType(): Int {
+        return mShapeType
+    }
+
+    override fun setProgress(progress: Float) {
+        this.mProgress = progress
     }
 
 
@@ -130,6 +144,12 @@ class AnimationRender(context: Context) : CommonRenderer() {
         mTextureUnitLocation = glGetUniformLocation(mProgram, U_TEXTURE_UNIT)
         // 创建透明度桩位
         mAlphaLocation = glGetUniformLocation(mProgram, U_ALPHA)
+        // 方向
+        mDirectionLocation = glGetUniformLocation(mProgram, U_DIRECTION)
+        // 输入宽高
+        mInputSizeLocation = glGetUniformLocation(mProgram, U_INPUT_SIZE)
+        // 进度
+        mProgressLocation = glGetUniformLocation(mProgram, U_PROGRESS)
 
         // 创建一个MVP矩阵位置
         mMvpMatrixLocation = glGetUniformLocation(mProgram, U_MVP_MATRIX)
@@ -273,6 +293,10 @@ class AnimationRender(context: Context) : CommonRenderer() {
         glUniformMatrix4fv(mStMatrixLocation, 1, false, mStMatrix, 0)
         // 透明度
         glUniform1f(mAlphaLocation, mAlpha)
+        // 大小
+        glUniform2f(mInputSizeLocation, mViewWidth.toFloat(), mViewHeight.toFloat())
+        glUniform1i(mDirectionLocation, mDirection)
+        glUniform1f(mProgressLocation, mProgress)
         glEnableVertexAttribArray(mPositionLocation)
         glEnableVertexAttribArray(mTextureLocation)
         // 绑定纹理

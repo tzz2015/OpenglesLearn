@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.Menu
 import android.view.MenuItem
+import android.view.ViewGroup
 import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import com.example.opengleslearn.R
@@ -59,6 +60,7 @@ class AnimationOutActivity : AppCompatActivity() {
             mGlSurfaceView.setMvpMatrix(mProjectMatrix)
             mGlSurfaceView.setStMatrix(mModelMatrix)
             mGlSurfaceView.setRenderAlpha(mAlpha)
+            mGlSurfaceView.setProgress(progress)
             mGlSurfaceView.requestRender()
         }
     }
@@ -72,6 +74,10 @@ class AnimationOutActivity : AppCompatActivity() {
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         Log.e(TAG, item.title.toString())
         tv_animation_name.text = "当前动画：${item.title}"
+        if (mGlSurfaceView.getShapeType() != AnimationShapeType.DEFEAT) {
+            mGlSurfaceView.setShapeType(AnimationShapeType.DEFEAT)
+            recreateGlSurfaceView()
+        }
         when (item.itemId) {
             R.id.action_fade_out -> mAnimation = FadeAnimation(false)
             R.id.action_zoom_slightly -> mAnimation = ZoomSlightlyAnimation(false)
@@ -82,10 +88,22 @@ class AnimationOutActivity : AppCompatActivity() {
             R.id.action_shader3 -> mAnimation = MoveAnimation(false, MoveAnimationType.BOTTOM)
             R.id.action_shader4 -> mAnimation = FlipAnimation(false)
             R.id.action_shader5 -> mAnimation = RotateAnimation(false)
-            R.id.action_shader6 -> mAnimation = SwirlAnimation(false)
+            R.id.action_shader6 -> {
+                mAnimation = SwirlAnimation(false)
+                mGlSurfaceView.setShapeType(AnimationShapeType.SWIRL)
+                (mGlSurfaceView.getRender() as AnimationRender).mDirection = 1
+                recreateGlSurfaceView()
+            }
         }
         updateAnimation(seekbar.progress / 100f)
         return true
+    }
+
+    private fun recreateGlSurfaceView() {
+        val viewGroup = mGlSurfaceView.parent as ViewGroup
+        viewGroup.removeAllViews()
+        fl_surface_root.removeAllViews()
+        fl_surface_root.addView(mGlSurfaceView)
     }
 
     override fun onResume() {
