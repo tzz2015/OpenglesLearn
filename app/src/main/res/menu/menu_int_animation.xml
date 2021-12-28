@@ -59,6 +59,15 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="Swirl漩涡旋入"
         app:showAsAction="never" />
-
+    <item
+        android:id="@+id/action_shader7"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Spin L向左转入"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_shader8"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Spin R向右转入"
+        app:showAsAction="never" />
 
 </menu>

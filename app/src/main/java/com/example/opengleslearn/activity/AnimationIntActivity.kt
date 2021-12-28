@@ -93,6 +93,9 @@ class AnimationIntActivity : AppCompatActivity() {
                 mGlSurfaceView.setShapeType(AnimationShapeType.SWIRL)
                 recreateGlSurfaceView()
             }
+            R.id.action_shader7 -> mAnimation = RotateInAnimation(true)
+            R.id.action_shader8 -> mAnimation = RotateInAnimation(false)
+
         }
         updateAnimation(seekbar.progress / 100f)
         return true
