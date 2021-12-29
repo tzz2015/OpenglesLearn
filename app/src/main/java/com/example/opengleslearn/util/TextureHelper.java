@@ -5,11 +5,14 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.util.Log;
 
+import static android.opengl.GLES20.GL_CLAMP_TO_EDGE;
 import static android.opengl.GLES20.GL_LINEAR;
 import static android.opengl.GLES20.GL_LINEAR_MIPMAP_LINEAR;
 import static android.opengl.GLES20.GL_TEXTURE_2D;
 import static android.opengl.GLES20.GL_TEXTURE_MAG_FILTER;
 import static android.opengl.GLES20.GL_TEXTURE_MIN_FILTER;
+import static android.opengl.GLES20.GL_TEXTURE_WRAP_S;
+import static android.opengl.GLES20.GL_TEXTURE_WRAP_T;
 import static android.opengl.GLES20.glBindTexture;
 import static android.opengl.GLES20.glDeleteTextures;
 import static android.opengl.GLES20.glGenTextures;
@@ -65,9 +68,11 @@ public class TextureHelper {
         // Set filtering: a default must be set, or the texture will be
         // black. 纹理过滤
         // 缩小时 使用三线性过滤
-        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
         // 放大时使用 双线性过滤
         glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+        glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
         // 加载位图到opengl
         texImage2D(GL_TEXTURE_2D, 0, bitmap, 0);
         // 生成MIP贴图

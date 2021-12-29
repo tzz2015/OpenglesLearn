@@ -27,9 +27,7 @@ vec4 directionBlur(sampler2D tex, vec2 uv, vec2 direction, float intensity)
     return color;
 }
 
-void main()
-{
-    vec2 uv = v_TextureCoordinates;
+vec2 adjustUV(vec2 uv){
     if (uv.x>1.0){
         uv.x=2.0-uv.x;
     }
@@ -42,6 +40,12 @@ void main()
     if (uv.y<0.0){
         uv.y=-uv.y;
     }
+    return uv;
+}
+
+void main()
+{
+    vec2 uv = adjustUV(v_TextureCoordinates);
     if (blurSize == 0.0){
         gl_FragColor = texture2D(u_TextureUnit, uv)*alpha;
     } else {

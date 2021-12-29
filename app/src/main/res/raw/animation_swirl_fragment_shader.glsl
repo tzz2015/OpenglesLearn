@@ -17,7 +17,7 @@ void main()
     //    gl_FragColor = texture2D(u_TextureUnit, swirl(uv))* step(uv.x, 2.0) * step(uv.y, 2.0) * step(-1.0, uv.x) * step(-1.0, uv.y);
     //    gl_FragColor = texture2D(u_TextureUnit, v_TextureCoordinates)*alpha;
     //获取旋转的直径
-    float Res = float(min(inputSize.x, inputSize.y));
+    float res = float(min(inputSize.x, inputSize.y));
     vec2 st = uv;
     if (st.x>1.0){
         st.x=2.0-st.x;
@@ -33,26 +33,29 @@ void main()
     }
 
     //半径 = 直径 * 0.5;
-    float Radius = Res * 0.5;
+    float radius = res * 0.45;
     //准备旋转处理的纹理坐标 = 纹理坐标 * 直径
-    vec2 xy = Res * st;
+    vec2 xy = res * st;
 
-    vec2 dxy = xy - vec2(Res/2.0, Res/2.0);
+    vec2 dxy = xy - vec2(res/2.0, res/2.0);
     //r
     float r = length(dxy);
     //抛物线递减因⼦子:(1.0-(r/Radius)*(r/Radius) )
     float angle = 60.0*(1.0 - progress);
     if (direction != 0){
         angle = -60.0 * progress;
+        radius = radius * progress;
+    }else{
+        radius = radius * (1.0 - progress);
     }
-    float beta = atan(dxy.y, dxy.x) + radians(angle) * 2.0 * (1.0-(r/Radius)*(r/Radius));
-    if (r <= Radius)
+    float beta = atan(dxy.y, dxy.x) + radians(angle) * 2.0 * (1.0-(r/radius)*(r/radius));
+    if (r <= radius)
     {
         //获取的纹理坐标旋转beta度.
-        xy = vec2(Res/2.0, Res/2.0) + r*vec2(cos(beta), sin(beta));
+        xy = vec2(res/2.0, res/2.0) + r*vec2(cos(beta), sin(beta));
     }
     //st = 旋转后的纹理坐标/旋转范围
-    st = xy/Res;
+    st = xy/res;
     //将旋转的纹理坐标替换原始纹理坐标TextureCoordsVarying 获取对应像素点的颜⾊.
     vec3 irgb = texture2D(u_TextureUnit, st).rgb;
     //将计算后的颜⾊填充到像素点中 gl_FragColor
