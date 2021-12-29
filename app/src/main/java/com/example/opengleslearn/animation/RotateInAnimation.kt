@@ -13,7 +13,7 @@ class RotateInAnimation(private val isLeft: Boolean) : BaseAnimation() {
 
 
     override fun setProgress(progress: Float) {
-        val progress = easeProgress(progress, false)
+        val progress = easeProgress(progress, true)
         Matrix.setIdentityM(mProjectMatrix, 0)
         var rotate = 90f * (1.0f - progress)
         var moveX = -0.45f * Constants.MAX_HORIZONTAL_OFFSET * (1.0f - progress)

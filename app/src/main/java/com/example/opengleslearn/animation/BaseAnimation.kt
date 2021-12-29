@@ -1,12 +1,15 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
+import com.example.opengleslearn.util.AnimationInterpolator
 
 abstract class BaseAnimation : IAnimation {
     val mProjectMatrix = FloatArray(16)
     val mModelMatrix = FloatArray(16)
     var mAlpha: Float = 1.0f
     var mIsIntAnimation: Boolean = false
+    val TAG = javaClass.name
+
 
     init {
         Matrix.setIdentityM(mProjectMatrix, 0)

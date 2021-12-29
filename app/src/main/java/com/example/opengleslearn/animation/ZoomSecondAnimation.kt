@@ -14,7 +14,7 @@ class ZoomSecondAnimation() : BaseAnimation() {
     }
 
     override fun setProgress(progress: Float) {
-        val progress = easeProgress(progress, false)
+        val progress = easeProgress(progress, true)
         Matrix.setIdentityM(mProjectMatrix, 0)
 
         mAlpha = if (mIsIntAnimation) {

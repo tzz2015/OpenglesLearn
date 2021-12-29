@@ -95,6 +95,7 @@ class AnimationIntActivity : AppCompatActivity() {
             }
             R.id.action_shader7 -> mAnimation = RotateInAnimation(true)
             R.id.action_shader8 -> mAnimation = RotateInAnimation(false)
+            R.id.action_zoom_out -> mAnimation = ZoomOutAnimation(true)
 
         }
         updateAnimation(seekbar.progress / 100f)

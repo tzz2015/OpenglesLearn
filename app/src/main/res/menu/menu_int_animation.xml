@@ -19,6 +19,11 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="Zoom In2放大I"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_zoom_out"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Zoom Out缩小"
+        app:showAsAction="never" />
 
     <item
         android:id="@+id/action_shader0"

@@ -94,6 +94,7 @@ class AnimationOutActivity : AppCompatActivity() {
                 (mGlSurfaceView.getRender() as AnimationRender).mDirection = 1
                 recreateGlSurfaceView()
             }
+            R.id.action_zoom_out -> mAnimation = ZoomOutAnimation(false)
         }
         updateAnimation(seekbar.progress / 100f)
         return true
