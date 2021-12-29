@@ -160,7 +160,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
         if (mBgTexture > 0) {
             glDeleteTextures(0, intArrayOf(mBgTexture), 0)
         }
-        val loadTexture = TextureHelper.loadTexture(mContext, R.drawable.icon_lyf)
+        val loadTexture = TextureHelper.loadTexture(mContext, R.drawable.icon_animation)
         mBgTexture = loadTexture[0]
         mPicWidth = loadTexture[1]
         mPicHeight = loadTexture[2]

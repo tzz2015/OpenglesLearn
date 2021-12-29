@@ -3,7 +3,7 @@ package com.example.opengleslearn.animation
 import android.opengl.Matrix
 
 /**
- * @description: Zoom In2放大I
+ * @description: Zoom In2放大I 先快后慢
  * @author:  刘宇飞
  * @date :   2021/12/27 14:14
  */
@@ -14,6 +14,7 @@ class ZoomSecondAnimation() : BaseAnimation() {
     }
 
     override fun setProgress(progress: Float) {
+        val progress = easeProgress(progress, false)
         Matrix.setIdentityM(mProjectMatrix, 0)
 
         mAlpha = if (mIsIntAnimation) {
