@@ -62,5 +62,11 @@
         android:title="Swirl漩涡旋出"
         app:showAsAction="never" />
 
+    <item
+        android:id="@+id/action_spin_u"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Spin U向上转出"
+        app:showAsAction="never" />
+
 
 </menu>

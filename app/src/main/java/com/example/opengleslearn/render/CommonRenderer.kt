@@ -49,6 +49,10 @@ abstract class CommonRenderer : GLSurfaceView.Renderer {
 
     }
 
+    open fun setBlurSize(blurSize:Float){
+
+    }
+
     override fun onSurfaceChanged(p0: GL10?, width: Int, height: Int) {
         GLES10.glViewport(0, 0, width, height)
         mViewWidth = width

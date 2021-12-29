@@ -61,6 +61,7 @@ class AnimationIntActivity : AppCompatActivity() {
             mGlSurfaceView.setStMatrix(mModelMatrix)
             mGlSurfaceView.setRenderAlpha(mAlpha)
             mGlSurfaceView.setProgress(progress)
+            mGlSurfaceView.setBlurSize(mBlurSize)
             mGlSurfaceView.requestRender()
         }
     }

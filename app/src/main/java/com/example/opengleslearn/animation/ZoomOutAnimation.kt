@@ -23,7 +23,6 @@ class ZoomOutAnimation() : BaseAnimation() {
         } else {
             1.0f - 0.5f * AnimationInterpolator.easeInQuart(progress)
         }
-        Log.e(TAG, "progress:$progress -- mAlpha:$mAlpha")
         val scale = if (mIsIntAnimation) 1.3f - 0.3f * progress else 1.0f - 0.4f * progress
         Matrix3DUtils.preScaleM(mProjectMatrix, scale, scale, 0f)
     }

@@ -61,6 +61,7 @@ class AnimationOutActivity : AppCompatActivity() {
             mGlSurfaceView.setStMatrix(mModelMatrix)
             mGlSurfaceView.setRenderAlpha(mAlpha)
             mGlSurfaceView.setProgress(progress)
+            mGlSurfaceView.setBlurSize(mBlurSize)
             mGlSurfaceView.requestRender()
         }
     }
@@ -95,6 +96,7 @@ class AnimationOutActivity : AppCompatActivity() {
                 recreateGlSurfaceView()
             }
             R.id.action_zoom_out -> mAnimation = ZoomOutAnimation(false)
+            R.id.action_spin_u -> mAnimation = SpinOutAnimation()
         }
         updateAnimation(seekbar.progress / 100f)
         return true

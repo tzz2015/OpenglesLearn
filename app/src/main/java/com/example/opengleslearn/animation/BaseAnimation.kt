@@ -7,6 +7,7 @@ abstract class BaseAnimation : IAnimation {
     val mProjectMatrix = FloatArray(16)
     val mModelMatrix = FloatArray(16)
     var mAlpha: Float = 1.0f
+    var mBlurSize: Float = 0f
     var mIsIntAnimation: Boolean = false
     val TAG = javaClass.name
 

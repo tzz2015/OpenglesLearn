@@ -54,6 +54,10 @@ class CommonSurfaceView(context: Context, renderer: CommonRenderer) : GLSurfaceV
         mRender.setProgress(progress)
     }
 
+    fun setBlurSize(blurSize: Float) {
+        mRender.setBlurSize(blurSize)
+    }
+
 
     fun onDestroy() {
         mRender.onDestroy()

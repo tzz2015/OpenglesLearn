@@ -6,15 +6,32 @@ package com.example.opengleslearn.util;
  * @date :   2021/12/29 10:51
  */
 public class AnimationInterpolator {
-
+    /**
+     * 先慢后快
+     *
+     * @param t
+     * @return
+     */
     public static float easeInQuad(float t) {
         return adjustValue(t * t);
     }
 
+    /**
+     * 先慢后快
+     *
+     * @param t
+     * @return
+     */
     public static float easeInCubic(float t) {
         return adjustValue(t * t * t);
     }
 
+    /**
+     * 先慢后快
+     *
+     * @param t
+     * @return
+     */
     public static float easeInQuart(float t) {
         return adjustValue(t * t * t * t);
     }

@@ -31,6 +31,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mInputSizeLocation = 0
     private var mMvpMatrixLocation = 0
     private var mStMatrixLocation = 0
+    private var mBlurSizeLocation = 0
     private val mMvpMatrix = FloatArray(16)
     private val mCropMatrix = FloatArray(16)
     private val mStMatrix = FloatArray(16)
@@ -41,6 +42,8 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mShapeType: Int = AnimationShapeType.DEFEAT
     var mDirection: Int = 0
     private var mProgress: Float = 0f
+    private var mBlurSize: Float = 0f
+
 
     companion object {
         const val BYTES_PER_FLOAT = 4
@@ -53,6 +56,8 @@ class AnimationRender(context: Context) : CommonRenderer() {
         const val U_INPUT_SIZE = "inputSize"
         const val U_DIRECTION = "direction"
         const val U_PROGRESS = "progress"
+        const val U_BLUR_SIZE = "blurSize"
+
         const val POSITION_COMPONENT_COUNT = 2
     }
 
@@ -116,6 +121,10 @@ class AnimationRender(context: Context) : CommonRenderer() {
         this.mProgress = progress
     }
 
+    override fun setBlurSize(blurSize: Float) {
+        this.mBlurSize = blurSize
+    }
+
 
     override fun onSurfaceCreated(glUnused: GL10?, config: EGLConfig?) {
         createProgram()
@@ -150,6 +159,8 @@ class AnimationRender(context: Context) : CommonRenderer() {
         mInputSizeLocation = glGetUniformLocation(mProgram, U_INPUT_SIZE)
         // 进度
         mProgressLocation = glGetUniformLocation(mProgram, U_PROGRESS)
+        // 模糊度
+        mBlurSizeLocation = glGetUniformLocation(mProgram, U_BLUR_SIZE)
 
         // 创建一个MVP矩阵位置
         mMvpMatrixLocation = glGetUniformLocation(mProgram, U_MVP_MATRIX)
@@ -297,6 +308,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
         glUniform2f(mInputSizeLocation, mViewWidth.toFloat(), mViewHeight.toFloat())
         glUniform1i(mDirectionLocation, mDirection)
         glUniform1f(mProgressLocation, mProgress)
+        glUniform1f(mBlurSizeLocation, mBlurSize)
         glEnableVertexAttribArray(mPositionLocation)
         glEnableVertexAttribArray(mTextureLocation)
         // 绑定纹理
