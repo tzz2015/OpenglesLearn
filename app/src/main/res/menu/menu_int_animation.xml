@@ -74,5 +74,10 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="Spin R向右转入"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_swing_right"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Swing R向右甩入"
+        app:showAsAction="never" />
 
 </menu>

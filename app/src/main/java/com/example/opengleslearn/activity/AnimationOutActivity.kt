@@ -15,7 +15,7 @@ import com.example.opengleslearn.surfaceView.CommonSurfaceView
 import kotlinx.android.synthetic.main.activity_animation.*
 import kotlinx.android.synthetic.main.activity_picture_load.fl_surface_root
 
-class AnimationOutActivity : AppCompatActivity() {
+class AnimationOutActivity : BaseActivity() {
     private val mGlSurfaceView: CommonSurfaceView by lazy {
         CommonSurfaceView(
             this,
@@ -49,6 +49,8 @@ class AnimationOutActivity : AppCompatActivity() {
             override fun onStopTrackingTouch(seekbar: SeekBar?) {
             }
         })
+        btn_play.setOnClickListener { startPlay() }
+        btn_pause.setOnClickListener { stopPlay() }
     }
 
     /**
@@ -112,6 +114,10 @@ class AnimationOutActivity : AppCompatActivity() {
     override fun onResume() {
         super.onResume()
         mGlSurfaceView.onResume()
+    }
+
+    override fun playProgress(progress: Int) {
+        seekbar.progress = progress
     }
 
     override fun onPause() {
