@@ -79,5 +79,31 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="Swing R向右甩入"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_swing_down"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Swing D向下甩入"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_swing_right_down"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Right D向右下甩入"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_swing_right_up"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Right U向右上甩入"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_swing_left_down"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Left D向左下甩入"
+        app:showAsAction="never" />
+
+    <item
+        android:id="@+id/action_swing_left_up"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="Left U向左上甩入"
+        app:showAsAction="never" />
 
 </menu>

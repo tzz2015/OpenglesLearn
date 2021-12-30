@@ -100,6 +100,12 @@ class AnimationIntActivity : BaseActivity() {
             R.id.action_shader8 -> mAnimation = RotateInAnimation(false)
             R.id.action_zoom_out -> mAnimation = ZoomOutAnimation(true)
             R.id.action_swing_right -> mAnimation = SwingRightAnimation()
+            R.id.action_swing_down -> mAnimation = SwingDownAnimation()
+            R.id.action_swing_right_down -> mAnimation = SwingRightDownAnimation()
+            R.id.action_swing_right_up -> mAnimation = SwingRightUpAnimation()
+            R.id.action_swing_left_down -> mAnimation = SwingLeftDownAnimation()
+            R.id.action_swing_left_up -> mAnimation = SwingLeftUpAnimation()
+
 
         }
         updateAnimation(seekbar.progress / 100f)
