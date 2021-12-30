@@ -19,6 +19,6 @@ class SwingRightAnimation : BaseSwingAnimation() {
     }
 
     override fun getStartRotateAngle(): Float {
-        return 20f
+        return 10f
     }
 }
