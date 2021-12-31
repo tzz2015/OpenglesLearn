@@ -32,4 +32,13 @@
         app:layout_constraintStart_toEndOf="@+id/btn_in_animation"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btn_combination_animation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:text="组合动画"
+        app:layout_constraintStart_toEndOf="@+id/btn_out_animation"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -27,6 +27,8 @@
         <activity android:name=".activity.PictureLoadActivity" />
         <activity android:name=".activity.AnimationIntActivity"/>
         <activity android:name=".activity.AnimationOutActivity"/>
+        <activity android:name=".activity.AnimationCombinationActivity"/>
+
 
     </application>
 

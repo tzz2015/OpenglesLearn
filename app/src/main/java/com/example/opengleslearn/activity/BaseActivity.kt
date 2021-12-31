@@ -31,6 +31,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     fun startPlay() {
         mCurrTime = -100f
+        mHandler.removeCallbacks(mRunnable)
         mHandler.postDelayed(mRunnable, 100)
     }
 

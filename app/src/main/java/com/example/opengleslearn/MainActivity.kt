@@ -24,6 +24,7 @@ class MainActivity : AppCompatActivity() {
     private fun initClick() {
         btn_in_animation.setOnClickListener { startActivity(Intent(this, AnimationIntActivity::class.java)) }
         btn_out_animation.setOnClickListener { startActivity(Intent(this, AnimationOutActivity::class.java)) }
+        btn_combination_animation.setOnClickListener { startActivity(Intent(this, AnimationCombinationActivity::class.java)) }
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
