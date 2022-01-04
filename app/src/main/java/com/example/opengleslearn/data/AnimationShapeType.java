@@ -1,4 +1,4 @@
-package com.example.opengleslearn.animation;
+package com.example.opengleslearn.data;
 
 
 import androidx.annotation.IntDef;

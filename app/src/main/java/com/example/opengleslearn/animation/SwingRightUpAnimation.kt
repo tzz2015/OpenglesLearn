@@ -1,6 +1,7 @@
 package com.example.opengleslearn.animation
 
 import android.graphics.PointF
+import com.example.opengleslearn.animation.base.BaseSwingAnimation
 import com.example.opengleslearn.data.SwingPointData
 
 class SwingRightUpAnimation : BaseSwingAnimation() {

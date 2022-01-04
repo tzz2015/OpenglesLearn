@@ -1,4 +1,4 @@
-package com.example.opengleslearn.animation
+package com.example.opengleslearn.animation.base
 
 import android.graphics.PointF
 import android.opengl.Matrix
@@ -16,7 +16,8 @@ abstract class BaseSwingAnimation : BaseAnimation() {
     private var mB: Float = 0f
     private var mRotate: Float = 0f
     private var mRotatePoint = PointF()
-    protected var mProgressData=SwingProgressData()
+    protected var mProgressData = SwingProgressData()
+
     companion object {
         const val WIDTH: Float = 800f
         const val HEIGHT: Float = 800f

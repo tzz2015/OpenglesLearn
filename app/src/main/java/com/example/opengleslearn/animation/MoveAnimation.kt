@@ -1,6 +1,8 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
+import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.data.MoveAnimationType
 import com.example.opengleslearn.util.Constants
 
 class MoveAnimation() : BaseAnimation() {

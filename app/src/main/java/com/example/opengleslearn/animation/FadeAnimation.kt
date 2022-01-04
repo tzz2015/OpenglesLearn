@@ -1,5 +1,7 @@
 package com.example.opengleslearn.animation
 
+import com.example.opengleslearn.animation.base.BaseAnimation
+
 /**
  * @description: 渐显和渐隐
  * @author:  刘宇飞

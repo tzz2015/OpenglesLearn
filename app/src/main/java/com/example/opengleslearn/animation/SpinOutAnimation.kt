@@ -1,8 +1,7 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
-import com.example.opengleslearn.util.AnimationInterpolator
-import com.example.opengleslearn.util.Constants
+import com.example.opengleslearn.animation.base.BaseAnimation
 import com.example.opengleslearn.util.Matrix3DUtils
 
 /**

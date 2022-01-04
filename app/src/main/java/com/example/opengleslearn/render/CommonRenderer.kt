@@ -3,8 +3,7 @@ package com.example.opengleslearn.render
 import android.opengl.GLES10
 import android.opengl.GLES20
 import android.opengl.GLSurfaceView
-import android.opengl.Matrix
-import com.example.opengleslearn.animation.AnimationShapeType
+import com.example.opengleslearn.data.AnimationShapeType
 import javax.microedition.khronos.opengles.GL10
 
 abstract class CommonRenderer : GLSurfaceView.Renderer {

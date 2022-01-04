@@ -7,10 +7,10 @@ import android.view.Menu
 import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.SeekBar
-import androidx.appcompat.app.AppCompatActivity
 import com.example.opengleslearn.R
-import com.example.opengleslearn.animation.*
+import com.example.opengleslearn.animation.base.BaseAnimation
 import com.example.opengleslearn.animation.combination.ShakeAnimation
+import com.example.opengleslearn.data.AnimationShapeType
 import com.example.opengleslearn.render.AnimationRender
 import com.example.opengleslearn.surfaceView.CommonSurfaceView
 import kotlinx.android.synthetic.main.activity_animation.*

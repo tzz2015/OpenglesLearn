@@ -6,7 +6,7 @@ import android.opengl.GLES20.*
 import android.opengl.Matrix
 import android.opengl.Matrix.orthoM
 import com.example.opengleslearn.R
-import com.example.opengleslearn.animation.AnimationShapeType
+import com.example.opengleslearn.data.AnimationShapeType
 import com.example.opengleslearn.util.*
 import java.nio.ByteBuffer
 import java.nio.ByteOrder

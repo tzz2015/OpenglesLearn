@@ -1,6 +1,7 @@
-package com.example.opengleslearn.animation
+package com.example.opengleslearn.animation.base
 
 import android.opengl.Matrix
+import com.example.opengleslearn.data.IAnimation
 
 abstract class BaseAnimation() : IAnimation {
     val mProjectMatrix = FloatArray(16)

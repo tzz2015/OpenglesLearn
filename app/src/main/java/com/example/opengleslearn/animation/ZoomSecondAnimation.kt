@@ -1,6 +1,7 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
+import com.example.opengleslearn.animation.base.BaseAnimation
 
 /**
  * @description: Zoom In2放大I 先快后慢

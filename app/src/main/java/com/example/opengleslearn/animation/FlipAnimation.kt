@@ -1,6 +1,7 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
+import com.example.opengleslearn.animation.base.BaseAnimation
 
 /**
  * @description:Flip镜像翻转

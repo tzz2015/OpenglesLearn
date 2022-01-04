@@ -1,4 +1,4 @@
-package com.example.opengleslearn.animation;
+package com.example.opengleslearn.data;
 
 
 import androidx.annotation.IntDef;
@@ -8,7 +8,8 @@ import java.lang.annotation.Retention;
 import static java.lang.annotation.RetentionPolicy.SOURCE;
 
 /**
- * @author baosiliang
+ * 移动动画类型
+ * @author 刘宇飞
  * @date 2020/1/15.
  */
 @IntDef({

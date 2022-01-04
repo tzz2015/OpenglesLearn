@@ -1,7 +1,7 @@
 package com.example.opengleslearn.animation.combination
 
 import android.opengl.Matrix
-import com.example.opengleslearn.animation.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseAnimation
 
 /**
  * @description: 左晃晃 右晃晃
@@ -12,11 +12,7 @@ class ShakeAnimation(private val isLeft: Boolean) : BaseAnimation() {
     private var mCurrRotate: Float = 0f
     private var mCurrTransition: Float = 0f
 
-    companion object {
-        // 最大旋转角度
-        const val MAX_ROTATE = 30f
-        const val MAX_TRANSITION = 0.2f
-    }
+
 
     override fun setProgress(progress: Float) {
         Matrix.setIdentityM(mModelMatrix, 0)
