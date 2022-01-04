@@ -43,6 +43,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
     var mDirection: Int = 0
     private var mProgress: Float = 0f
     private var mBlurSize: Float = 0f
+    private var mIconId: Int = R.drawable.icon_animation
 
 
     companion object {
@@ -171,10 +172,14 @@ class AnimationRender(context: Context) : CommonRenderer() {
         if (mBgTexture > 0) {
             glDeleteTextures(0, intArrayOf(mBgTexture), 0)
         }
-        val loadTexture = TextureHelper.loadTexture(mContext, R.drawable.icon_animation)
+        val loadTexture = TextureHelper.loadTexture(mContext, mIconId)
         mBgTexture = loadTexture[0]
         mPicWidth = loadTexture[1]
         mPicHeight = loadTexture[2]
+    }
+
+    fun setIconId(id: Int) {
+        this.mIconId = id
     }
 
     /**

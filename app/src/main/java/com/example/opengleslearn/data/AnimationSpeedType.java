@@ -16,6 +16,8 @@ public @interface AnimationSpeedType {
     // 线性
     int LINEAR = 0;
     int EASE_IN_QUAD = 1;
+    // 先慢后快
     int EASE_IN_CUBIC = 2;
-
+    // 先快后慢
+    int EASE_OUT_CUBIC = 3;
 }

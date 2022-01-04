@@ -10,15 +10,15 @@ import androidx.appcompat.app.AppCompatActivity
  */
 abstract class BaseActivity : AppCompatActivity() {
     // 两秒
-    private val mMaxTime = 2000f
+    protected var mMaxTime = 2000f
     private var mCurrTime = 0f
     private val mHandler: Handler = Handler()
     private var mRunnable: Runnable = object : Runnable {
         override fun run() {
-            mCurrTime += 100
+            mCurrTime += 20
             if (mCurrTime <= mMaxTime) {
                 //每隔100ms循环执行run方法
-                mHandler.postDelayed(this, 100)
+                mHandler.postDelayed(this, 20)
                 playProgress((mCurrTime / mMaxTime * 100).toInt())
             } else {
                 mHandler.removeCallbacks(this)
@@ -30,9 +30,9 @@ abstract class BaseActivity : AppCompatActivity() {
 
 
     fun startPlay() {
-        mCurrTime = -100f
+        mCurrTime = -20f
         mHandler.removeCallbacks(mRunnable)
-        mHandler.postDelayed(mRunnable, 100)
+        mHandler.postDelayed(mRunnable, 20)
     }
 
     fun stopPlay() {

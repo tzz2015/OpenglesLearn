@@ -15,6 +15,7 @@ import com.example.opengleslearn.render.AnimationRender
 import com.example.opengleslearn.surfaceView.CommonSurfaceView
 import kotlinx.android.synthetic.main.activity_animation.*
 import kotlinx.android.synthetic.main.activity_picture_load.fl_surface_root
+
 /**
  * @description: 组合动画
  * @author:  刘宇飞
@@ -36,6 +37,8 @@ class AnimationCombinationActivity : BaseActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_animation)
+        mMaxTime = 3000f
+        (mGlSurfaceView.getRender() as AnimationRender).setIconId(R.drawable.icon_com)
         fl_surface_root.addView(mGlSurfaceView)
         initListener()
     }
@@ -88,10 +91,7 @@ class AnimationCombinationActivity : BaseActivity() {
         }
         when (item.itemId) {
             R.id.action_shake_left -> mAnimation = ShakeAnimation(true)
-            R.id.action_shake_right -> mAnimation = ShakeAnimation(true)
-
-
-
+            R.id.action_shake_right -> mAnimation = ShakeAnimation(false)
         }
         updateAnimation(seekbar.progress / 100f)
         return true

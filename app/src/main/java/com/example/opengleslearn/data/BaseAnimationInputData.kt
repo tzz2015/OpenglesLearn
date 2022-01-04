@@ -1,8 +1,6 @@
 package com.example.opengleslearn.data
 
-import android.graphics.BlurMaskFilter
 import com.example.opengleslearn.util.AnimationInterpolator
-import kotlin.math.abs
 
 /**
  * @description: 线性输入输入参数 计算   平移为垂直情况 90° 或者 180°
@@ -20,8 +18,10 @@ open class BaseAnimationInputData() {
     var endProgress: Float = 1f
     var startRotate: Float = 0f
     var endRotate: Float = 0f
-    var startTransition: Float = 0f
-    var endTransition: Float = 0f
+    var startTransitionX: Float = WIDTH / 2f
+    var endTransitionX: Float = WIDTH / 2f
+    var startTransitionY: Float = HEIGHT / 2f
+    var endTransitionY: Float = HEIGHT / 2f
     var startAlpha: Float = 1f
     var endAlpha: Float = 1f
     var speedType: Int = AnimationSpeedType.LINEAR
@@ -30,41 +30,56 @@ open class BaseAnimationInputData() {
     var startBlur: Double = 0.0
     var endBlur: Double = 0.0
 
+    // true 作用于顶点 false 作用于纹理
+    var isVertexModel: Boolean = false
+
     constructor(
         startProgress: Float = 0.0f,
         endProgress: Float = 1.0f,
         startRotate: Float = 0.0f,
         endRotate: Float = 0f,
         speedType: Int = AnimationSpeedType.LINEAR,
-        startTransition: Float = 0.0f,
-        endTransition: Float = 0.0f,
+        startTransitionX: Float = WIDTH / 2f,
+        endTransitionX: Float = WIDTH / 2f,
         startBlur: Double = 0.0,
-        endBlur: Double = 0.0
+        endBlur: Double = 0.0,
+        startScale: Float = 1.0f,
+        endScale: Float = 1.0f,
+        isVertexModel: Boolean = false
     ) : this() {
         this.startProgress = startProgress
         this.endProgress = endProgress
         this.startRotate = startRotate
         this.endRotate = endRotate
-        this.startTransition = startTransition
-        this.endTransition = endTransition
+        this.startTransitionX = startTransitionX
+        this.endTransitionX = endTransitionX
         this.speedType = speedType
         this.startBlur = startBlur
         this.endBlur = endBlur
+        this.isVertexModel = isVertexModel
+        this.startScale = startScale
+        this.endScale = endScale
     }
 
 
     constructor(
         startProgress: Float = 0.0f,
         endProgress: Float = 1.0f,
-        startTransition: Float = 0.0f,
-        endTransition: Float = 0f,
-        speedType: Int = AnimationSpeedType.LINEAR
+        startTransitionX: Float = WIDTH / 2f,
+        endTransitionX: Float = WIDTH / 2f,
+        startTransitionY: Float = HEIGHT / 2f,
+        endTransitionY: Float = HEIGHT / 2f,
+        speedType: Int = AnimationSpeedType.LINEAR,
+        isVertexModel: Boolean = false
     ) : this() {
         this.startProgress = startProgress
         this.endProgress = endProgress
-        this.startTransition = startTransition
-        this.endTransition = endTransition
+        this.startTransitionX = startTransitionX
+        this.endTransitionX = endTransitionX
+        this.startTransitionY = startTransitionY
+        this.endTransitionY = endTransitionY
         this.speedType = speedType
+        this.isVertexModel = isVertexModel
     }
 
     constructor(
@@ -72,13 +87,15 @@ open class BaseAnimationInputData() {
         endProgress: Float = 1.0f,
         speedType: Int = AnimationSpeedType.LINEAR,
         startAlpha: Float = 1.0f,
-        endAlpha: Float = 1f
+        endAlpha: Float = 1f,
+        isVertexModel: Boolean = false
     ) : this() {
         this.startProgress = startProgress
         this.endProgress = endProgress
         this.startAlpha = startAlpha
         this.endAlpha = endAlpha
         this.speedType = speedType
+        this.isVertexModel = isVertexModel
     }
 
     constructor(
@@ -86,13 +103,15 @@ open class BaseAnimationInputData() {
         endProgress: Float = 1.0f,
         speedType: Int = AnimationSpeedType.LINEAR,
         startBlur: Double = 0.0,
-        endBlur: Double = 0.0
+        endBlur: Double = 0.0,
+        isVertexModel: Boolean = false
     ) : this() {
         this.startProgress = startProgress
         this.endProgress = endProgress
         this.startBlur = startBlur
         this.endBlur = endBlur
         this.speedType = speedType
+        this.isVertexModel = isVertexModel
     }
 
     constructor(
@@ -101,12 +120,14 @@ open class BaseAnimationInputData() {
         endProgress: Float = 1.0f,
         startScale: Float = 0.0f,
         endScale: Float = 1f,
+        isVertexModel: Boolean = false
     ) : this() {
         this.startProgress = startProgress
         this.endProgress = endProgress
         this.startScale = startScale
         this.endScale = endScale
         this.speedType = speedType
+        this.isVertexModel = isVertexModel
     }
 
 
@@ -128,14 +149,32 @@ open class BaseAnimationInputData() {
      * 获取当前线性角度
      */
     fun getCurrRotate(progress: Float): Float {
-        return getNumByProgress(startRotate, endRotate, progress)
+        return getNumByProgress(startRotate, endRotate, getCurrProgress(progress))
     }
 
     /**
      * 获取当前线性平移参数
      */
-    fun getCurrTransition(progress: Float): Float {
-        return getNumByProgress(startTransition, endTransition, getCurrProgress(progress))
+    fun getTextureTransitionX(progress: Float): Float {
+        val x = getNumByProgress(startTransitionX, endTransitionX, getCurrProgress(progress))
+        return windowXToTextureX(x)
+    }
+
+    fun getVertexTransitionX(progress: Float): Float {
+        val x = getNumByProgress(startTransitionX, endTransitionX, getCurrProgress(progress))
+        return windowXToVertexX(x)
+    }
+
+    fun getTextureTransitionY(progress: Float): Float {
+        val y =
+            getNumByProgress(startTransitionY, endTransitionY, getCurrProgress(progress))
+        return windowYToTextureY(y)
+    }
+
+    fun getVertexTransitionY(progress: Float): Float {
+        val y =
+            getNumByProgress(startTransitionY, endTransitionY, getCurrProgress(progress))
+        return windowYToVertexY(y)
     }
 
     /**
@@ -155,7 +194,7 @@ open class BaseAnimationInputData() {
     /**
      * 获取当前模糊度
      */
-    fun getCurrBlur(progress: Float): Float{
+    fun getCurrBlur(progress: Float): Float {
         return getNumByProgress(startBlur.toFloat(), endBlur.toFloat(), getCurrProgress(progress))
     }
 
