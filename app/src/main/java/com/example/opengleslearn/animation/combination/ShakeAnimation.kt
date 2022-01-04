@@ -117,7 +117,7 @@ class ShakeAnimation() : BaseComAnimation() {
                 35f / 75f,
                 startRotate = if (isLeft) -9f else 9f,
                 endRotate = if (isLeft) -1f else 1f,
-                speedType = AnimationSpeedType.EASE_OUT_CUBIC
+                speedType = AnimationSpeedType.EASE_IN_CUBIC
             )
         )
         mRotateList.add(
@@ -126,7 +126,7 @@ class ShakeAnimation() : BaseComAnimation() {
                 50f / 75f,
                 startRotate = if (isLeft) -1f else 1f,
                 endRotate = if (isLeft) 7f else -7f,
-                speedType = AnimationSpeedType.EASE_IN_CUBIC
+                speedType = AnimationSpeedType.EASE_OUT_CUBIC
             )
         )
 
