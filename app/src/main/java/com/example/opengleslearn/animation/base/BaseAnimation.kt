@@ -21,6 +21,16 @@ abstract class BaseAnimation() : IAnimation {
         mAlpha = alpha
     }
 
+    /**
+     * 重置
+     */
+    fun reset() {
+        Matrix.setIdentityM(mProjectMatrix, 0)
+        Matrix.setIdentityM(mModelMatrix, 0)
+        mAlpha = 1f
+        mBlurSize = 0f
+    }
+
 
     /**
      * 先快后慢或者先慢后快

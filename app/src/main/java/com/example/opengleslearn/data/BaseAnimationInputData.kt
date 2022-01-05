@@ -82,53 +82,7 @@ open class BaseAnimationInputData() {
         this.isVertexModel = isVertexModel
     }
 
-    constructor(
-        startProgress: Float = 0.0f,
-        endProgress: Float = 1.0f,
-        speedType: Int = AnimationSpeedType.LINEAR,
-        startAlpha: Float = 1.0f,
-        endAlpha: Float = 1f,
-        isVertexModel: Boolean = false
-    ) : this() {
-        this.startProgress = startProgress
-        this.endProgress = endProgress
-        this.startAlpha = startAlpha
-        this.endAlpha = endAlpha
-        this.speedType = speedType
-        this.isVertexModel = isVertexModel
-    }
 
-    constructor(
-        startProgress: Float = 0.0f,
-        endProgress: Float = 1.0f,
-        speedType: Int = AnimationSpeedType.LINEAR,
-        startBlur: Double = 0.0,
-        endBlur: Double = 0.0,
-        isVertexModel: Boolean = false
-    ) : this() {
-        this.startProgress = startProgress
-        this.endProgress = endProgress
-        this.startBlur = startBlur
-        this.endBlur = endBlur
-        this.speedType = speedType
-        this.isVertexModel = isVertexModel
-    }
-
-    constructor(
-        speedType: Int = AnimationSpeedType.LINEAR,
-        startProgress: Float = 0.0f,
-        endProgress: Float = 1.0f,
-        startScale: Float = 0.0f,
-        endScale: Float = 1f,
-        isVertexModel: Boolean = false
-    ) : this() {
-        this.startProgress = startProgress
-        this.endProgress = endProgress
-        this.startScale = startScale
-        this.endScale = endScale
-        this.speedType = speedType
-        this.isVertexModel = isVertexModel
-    }
 
 
     /**

@@ -15,6 +15,7 @@ import androidx.annotation.IntDef;
 public @interface AnimationSpeedType {
     // 线性
     int LINEAR = 0;
+    // 先很慢后快
     int EASE_IN_QUAD = 1;
     // 先慢后快
     int EASE_IN_CUBIC = 2;

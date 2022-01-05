@@ -11,7 +11,7 @@ import com.example.opengleslearn.util.Matrix3DUtils
  * @author:  刘宇飞
  * @date :   2022/1/4 11:36
  */
-abstract class BaseComAnimation : BaseAnimation {
+abstract class BaseComAnimation() : BaseAnimation() {
     // 组合动画
     protected val mComList: MutableList<BaseAnimationInputData> = ArrayList()
 
@@ -28,7 +28,7 @@ abstract class BaseComAnimation : BaseAnimation {
     protected val mBlurList: MutableList<BaseAnimationInputData> = ArrayList()
     private var mRotatePoint = PointF()
 
-    constructor() {
+    init {
         initData()
     }
 
@@ -47,12 +47,17 @@ abstract class BaseComAnimation : BaseAnimation {
     abstract fun initRotateList()
     abstract fun initScaleList()
     abstract fun initBlurList()
-    abstract fun getRotatePoint(): PointF
+
+    /**
+     * 默认按中心点旋转
+     */
+    protected open fun getRotatePoint(): PointF {
+        return PointF(0.5f, 0.5f)
+    }
 
 
     override fun setProgress(progress: Float) {
-        Matrix.setIdentityM(mProjectMatrix, 0)
-        Matrix.setIdentityM(mModelMatrix, 0)
+        reset()
         doComAnimation(progress)
         doTransition(progress)
         doRotate(progress)

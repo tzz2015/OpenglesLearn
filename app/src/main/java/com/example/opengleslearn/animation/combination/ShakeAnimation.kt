@@ -194,9 +194,7 @@ class ShakeAnimation() : BaseComAnimation() {
         mBlurList.add(BaseAnimationInputData(60f / 75f, 1f, startBlur = 0.0, endBlur = -2.5))
     }
 
-    override fun getRotatePoint(): PointF {
-        return PointF(0.5f, 0.5f)
-    }
+
 
 
 }

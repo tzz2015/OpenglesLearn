@@ -9,7 +9,9 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import com.example.opengleslearn.R
 import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.combination.LandingSpinAnimation
 import com.example.opengleslearn.animation.combination.ShakeAnimation
+import com.example.opengleslearn.animation.combination.SpinLandingAnimation
 import com.example.opengleslearn.data.AnimationShapeType
 import com.example.opengleslearn.render.AnimationRender
 import com.example.opengleslearn.surfaceView.CommonSurfaceView
@@ -92,6 +94,8 @@ class AnimationCombinationActivity : BaseActivity() {
         when (item.itemId) {
             R.id.action_shake_left -> mAnimation = ShakeAnimation(true)
             R.id.action_shake_right -> mAnimation = ShakeAnimation(false)
+            R.id.action_spin_landing -> mAnimation = SpinLandingAnimation()
+            R.id.action_landing_spin -> mAnimation = LandingSpinAnimation()
         }
         updateAnimation(seekbar.progress / 100f)
         return true

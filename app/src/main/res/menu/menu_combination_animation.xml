@@ -14,6 +14,16 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="Shake R右晃晃"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_spin_landing"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="旋转降落"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_landing_spin"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="降落旋转"
+        app:showAsAction="never" />
 
 
 </menu>
