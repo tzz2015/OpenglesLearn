@@ -7,7 +7,7 @@ package com.example.opengleslearn.util;
  */
 public class AnimationInterpolator {
     /**
-     * 先慢后快
+     * 先很慢后快
      *
      * @param t
      * @return
@@ -17,7 +17,7 @@ public class AnimationInterpolator {
     }
 
     /**
-     * 先慢后快
+     * 先很慢后快
      *
      * @param t
      * @return
@@ -27,7 +27,7 @@ public class AnimationInterpolator {
     }
 
     /**
-     * 先慢后快
+     * 先很慢后快
      *
      * @param t
      * @return
@@ -51,6 +51,15 @@ public class AnimationInterpolator {
 
     public static float easeOutQuart(float t) {
         return adjustValue((float) (1.0f - Math.pow(1.0 - t, 4.0)));
+    }
+
+    /**
+     * 先非常非常慢后快
+     * @param t
+     * @return
+     */
+    public static float easeOutQuint(float t){
+        return (float) (1f -  Math.pow(1f - t, 5));
     }
 
 

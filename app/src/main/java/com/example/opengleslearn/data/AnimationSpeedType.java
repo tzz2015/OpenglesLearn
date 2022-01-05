@@ -11,14 +11,20 @@ import androidx.annotation.IntDef;
         AnimationSpeedType.LINEAR,
         AnimationSpeedType.EASE_IN_QUAD,
         AnimationSpeedType.EASE_IN_CUBIC,
+        AnimationSpeedType.EASE_IN_QUART,
+        AnimationSpeedType.EASE_OUT_QUINT
 })
 public @interface AnimationSpeedType {
     // 线性
     int LINEAR = 0;
-    // 先很慢后快
-    int EASE_IN_QUAD = 1;
     // 先慢后快
+    int EASE_IN_QUAD = 1;
+    // 先很慢后快
     int EASE_IN_CUBIC = 2;
-    // 先快后慢
+    // 先很快后慢
     int EASE_OUT_CUBIC = 3;
+    // 先很很慢后快
+    int EASE_IN_QUART = 4;
+    // 先很很快后慢
+    int EASE_OUT_QUINT = 5;
 }

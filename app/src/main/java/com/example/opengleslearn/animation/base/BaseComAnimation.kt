@@ -150,6 +150,7 @@ abstract class BaseComAnimation() : BaseAnimation() {
     private fun applyScale(data: BaseAnimationInputData?, progress: Float) {
         data?.run {
             val scale = 1f / getCurrScale(progress)
+            Log.e(TAG,"progress:$progress  scale:$scale")
             if (isVertexModel) {
                 Matrix3DUtils.preTranslateM(mProjectMatrix, -mRotatePoint.x, -mRotatePoint.y, 0f)
                 Matrix3DUtils.preScaleM(mProjectMatrix, scale, scale, 1f)

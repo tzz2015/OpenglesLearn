@@ -24,6 +24,16 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="降落旋转"
         app:showAsAction="never" />
+    <item
+        android:id="@+id/action_rotate_zoom_out"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="旋转缩小"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_zoom_out_rotate"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="缩小旋转"
+        app:showAsAction="never" />
 
 
 </menu>
