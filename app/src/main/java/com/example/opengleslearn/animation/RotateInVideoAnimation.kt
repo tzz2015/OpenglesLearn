@@ -1,7 +1,7 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 import com.example.opengleslearn.util.Constants
 import com.example.opengleslearn.util.Matrix3DUtils
 
@@ -10,7 +10,7 @@ import com.example.opengleslearn.util.Matrix3DUtils
  * @author:  刘宇飞
  * @date :   2021/12/27 9:38
  */
-class RotateInAnimation(private val isLeft: Boolean) : BaseAnimation() {
+class RotateInVideoAnimation(private val isLeft: Boolean) : BaseVideoAnimation() {
 
 
     override fun setProgress(progress: Float) {

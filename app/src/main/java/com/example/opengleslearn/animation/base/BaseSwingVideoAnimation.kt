@@ -7,7 +7,7 @@ import com.example.opengleslearn.data.SwingPointData
 import com.example.opengleslearn.data.SwingProgressData
 import com.example.opengleslearn.util.Matrix3DUtils
 
-abstract class BaseSwingAnimation : BaseAnimation() {
+abstract class BaseSwingVideoAnimation : BaseVideoAnimation() {
 
     protected val mPointList: MutableList<SwingPointData> = ArrayList()
 

@@ -1,7 +1,6 @@
 package com.example.opengleslearn.animation.combination
 
-import android.graphics.PointF
-import com.example.opengleslearn.animation.base.BaseComAnimation
+import com.example.opengleslearn.animation.base.BaseComVideoAnimation
 import com.example.opengleslearn.data.AnimationSpeedType
 import com.example.opengleslearn.data.BaseAnimationInputData
 
@@ -10,7 +9,7 @@ import com.example.opengleslearn.data.BaseAnimationInputData
  * @author:  刘宇飞
  * @date :   2022/1/5 10:30
  */
-class LandingSpinAnimation : BaseComAnimation() {
+class LandingSpinVideoAnimation : BaseComVideoAnimation() {
 
     override fun initComList() {
     }

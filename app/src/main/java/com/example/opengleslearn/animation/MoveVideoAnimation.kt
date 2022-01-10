@@ -1,11 +1,11 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 import com.example.opengleslearn.data.MoveAnimationType
 import com.example.opengleslearn.util.Constants
 
-class MoveAnimation() : BaseAnimation() {
+class MoveVideoAnimation() : BaseVideoAnimation() {
     private var mType: Int = MoveAnimationType.LEFT
 
     constructor(isInt: Boolean, type: Int) : this() {

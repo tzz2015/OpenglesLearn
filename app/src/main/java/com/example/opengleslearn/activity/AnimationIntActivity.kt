@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import com.example.opengleslearn.R
 import com.example.opengleslearn.animation.*
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 import com.example.opengleslearn.data.AnimationShapeType
 import com.example.opengleslearn.data.MoveAnimationType
 import com.example.opengleslearn.render.AnimationRender
@@ -24,7 +24,7 @@ class AnimationIntActivity : BaseActivity() {
             AnimationRender(this)
         )
     }
-    private var mAnimation: BaseAnimation? = null
+    private var mAnimation: BaseVideoAnimation? = null
 
     companion object {
         private const val TAG: String = "AnimationActivity"
@@ -84,29 +84,29 @@ class AnimationIntActivity : BaseActivity() {
             recreateGlSurfaceView()
         }
         when (item.itemId) {
-            R.id.action_fade_int -> mAnimation = FadeAnimation(true)
-            R.id.action_zoom_slightly -> mAnimation = ZoomSlightlyAnimation(true)
-            R.id.action_zoom_I -> mAnimation = ZoomSecondAnimation(true)
-            R.id.action_shader0 -> mAnimation = MoveAnimation(true, MoveAnimationType.LEFT)
-            R.id.action_shader1 -> mAnimation = MoveAnimation(true, MoveAnimationType.RIGHT)
-            R.id.action_shader2 -> mAnimation = MoveAnimation(true, MoveAnimationType.TOP)
-            R.id.action_shader3 -> mAnimation = MoveAnimation(true, MoveAnimationType.BOTTOM)
-            R.id.action_shader4 -> mAnimation = FlipAnimation(true)
-            R.id.action_shader5 -> mAnimation = RotateAnimation(true)
+            R.id.action_fade_int -> mAnimation = FadeVideoAnimation(true)
+            R.id.action_zoom_slightly -> mAnimation = ZoomSlightlyVideoAnimation(true)
+            R.id.action_zoom_I -> mAnimation = ZoomSecondVideoAnimation(true)
+            R.id.action_shader0 -> mAnimation = MoveVideoAnimation(true, MoveAnimationType.LEFT)
+            R.id.action_shader1 -> mAnimation = MoveVideoAnimation(true, MoveAnimationType.RIGHT)
+            R.id.action_shader2 -> mAnimation = MoveVideoAnimation(true, MoveAnimationType.TOP)
+            R.id.action_shader3 -> mAnimation = MoveVideoAnimation(true, MoveAnimationType.BOTTOM)
+            R.id.action_shader4 -> mAnimation = FlipVideoAnimation(true)
+            R.id.action_shader5 -> mAnimation = RotateVideoAnimation(true)
             R.id.action_shader6 -> {
-                mAnimation = SwirlAnimation(true)
+                mAnimation = SwirlVideoAnimation(true)
                 mGlSurfaceView.setShapeType(AnimationShapeType.SWIRL)
                 recreateGlSurfaceView()
             }
-            R.id.action_shader7 -> mAnimation = RotateInAnimation(true)
-            R.id.action_shader8 -> mAnimation = RotateInAnimation(false)
-            R.id.action_zoom_out -> mAnimation = ZoomOutAnimation(true)
-            R.id.action_swing_right -> mAnimation = SwingRightAnimation()
-            R.id.action_swing_down -> mAnimation = SwingDownAnimation()
-            R.id.action_swing_right_down -> mAnimation = SwingRightDownAnimation()
-            R.id.action_swing_right_up -> mAnimation = SwingRightUpAnimation()
-            R.id.action_swing_left_down -> mAnimation = SwingLeftDownAnimation()
-            R.id.action_swing_left_up -> mAnimation = SwingLeftUpAnimation()
+            R.id.action_shader7 -> mAnimation = RotateInVideoAnimation(true)
+            R.id.action_shader8 -> mAnimation = RotateInVideoAnimation(false)
+            R.id.action_zoom_out -> mAnimation = ZoomOutVideoAnimation(true)
+            R.id.action_swing_right -> mAnimation = SwingRightVideoAnimation()
+            R.id.action_swing_down -> mAnimation = SwingDownVideoAnimation()
+            R.id.action_swing_right_down -> mAnimation = SwingRightDownVideoAnimation()
+            R.id.action_swing_right_up -> mAnimation = SwingRightUpVideoAnimation()
+            R.id.action_swing_left_down -> mAnimation = SwingLeftDownVideoAnimation()
+            R.id.action_swing_left_up -> mAnimation = SwingLeftUpVideoAnimation()
 
 
         }

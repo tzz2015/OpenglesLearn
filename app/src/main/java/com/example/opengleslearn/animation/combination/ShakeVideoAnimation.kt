@@ -1,10 +1,6 @@
 package com.example.opengleslearn.animation.combination
 
-import android.graphics.PointF
-import android.opengl.Matrix
-import com.example.opengleslearn.animation.base.BaseAnimation
-import com.example.opengleslearn.animation.base.BaseComAnimation
-import com.example.opengleslearn.data.AnimationShapeType
+import com.example.opengleslearn.animation.base.BaseComVideoAnimation
 import com.example.opengleslearn.data.AnimationSpeedType
 import com.example.opengleslearn.data.BaseAnimationInputData
 
@@ -13,7 +9,7 @@ import com.example.opengleslearn.data.BaseAnimationInputData
  * @author:  刘宇飞
  * @date :   2021/12/31 11:06
  */
-class ShakeAnimation() : BaseComAnimation() {
+class ShakeVideoAnimation() : BaseComVideoAnimation() {
     private var isLeft: Boolean = false
 
     constructor(isLeft: Boolean) : this() {

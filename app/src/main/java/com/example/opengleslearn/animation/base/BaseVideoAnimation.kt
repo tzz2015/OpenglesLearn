@@ -1,9 +1,9 @@
 package com.example.opengleslearn.animation.base
 
 import android.opengl.Matrix
-import com.example.opengleslearn.data.IAnimation
+import com.example.opengleslearn.data.IVideoAnimation
 
-abstract class BaseAnimation() : IAnimation {
+abstract class BaseVideoAnimation : IVideoAnimation {
     val mProjectMatrix = FloatArray(16)
     val mModelMatrix = FloatArray(16)
     var mAlpha: Float = 1.0f

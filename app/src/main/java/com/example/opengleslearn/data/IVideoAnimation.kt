@@ -1,6 +1,6 @@
 package com.example.opengleslearn.data
 
-interface IAnimation {
+interface IVideoAnimation {
 
     fun setAlpha(alpha: Float)
 

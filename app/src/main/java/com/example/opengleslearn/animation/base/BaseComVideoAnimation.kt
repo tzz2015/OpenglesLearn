@@ -1,7 +1,6 @@
 package com.example.opengleslearn.animation.base
 
 import android.graphics.PointF
-import android.opengl.Matrix
 import android.util.Log
 import com.example.opengleslearn.data.BaseAnimationInputData
 import com.example.opengleslearn.util.Matrix3DUtils
@@ -11,7 +10,7 @@ import com.example.opengleslearn.util.Matrix3DUtils
  * @author:  刘宇飞
  * @date :   2022/1/4 11:36
  */
-abstract class BaseComAnimation() : BaseAnimation() {
+abstract class BaseComVideoAnimation() : BaseVideoAnimation() {
     // 组合动画
     protected val mComList: MutableList<BaseAnimationInputData> = ArrayList()
 

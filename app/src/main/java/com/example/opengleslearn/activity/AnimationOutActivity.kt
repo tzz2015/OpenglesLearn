@@ -9,7 +9,7 @@ import android.view.ViewGroup
 import android.widget.SeekBar
 import com.example.opengleslearn.R
 import com.example.opengleslearn.animation.*
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 import com.example.opengleslearn.data.AnimationShapeType
 import com.example.opengleslearn.data.MoveAnimationType
 import com.example.opengleslearn.render.AnimationRender
@@ -24,7 +24,7 @@ class AnimationOutActivity : BaseActivity() {
             AnimationRender(this)
         )
     }
-    private var mAnimation: BaseAnimation? = null
+    private var mAnimation: BaseVideoAnimation? = null
 
     companion object {
         private const val TAG: String = "AnimationActivity"
@@ -84,23 +84,23 @@ class AnimationOutActivity : BaseActivity() {
             recreateGlSurfaceView()
         }
         when (item.itemId) {
-            R.id.action_fade_out -> mAnimation = FadeAnimation(false)
-            R.id.action_zoom_slightly -> mAnimation = ZoomSlightlyAnimation(false)
-            R.id.action_zoom_I -> mAnimation = ZoomSecondAnimation(false)
-            R.id.action_shader0 -> mAnimation = MoveAnimation(false, MoveAnimationType.LEFT)
-            R.id.action_shader1 -> mAnimation = MoveAnimation(false, MoveAnimationType.RIGHT)
-            R.id.action_shader2 -> mAnimation = MoveAnimation(false, MoveAnimationType.TOP)
-            R.id.action_shader3 -> mAnimation = MoveAnimation(false, MoveAnimationType.BOTTOM)
-            R.id.action_shader4 -> mAnimation = FlipAnimation(false)
-            R.id.action_shader5 -> mAnimation = RotateAnimation(false)
+            R.id.action_fade_out -> mAnimation = FadeVideoAnimation(false)
+            R.id.action_zoom_slightly -> mAnimation = ZoomSlightlyVideoAnimation(false)
+            R.id.action_zoom_I -> mAnimation = ZoomSecondVideoAnimation(false)
+            R.id.action_shader0 -> mAnimation = MoveVideoAnimation(false, MoveAnimationType.LEFT)
+            R.id.action_shader1 -> mAnimation = MoveVideoAnimation(false, MoveAnimationType.RIGHT)
+            R.id.action_shader2 -> mAnimation = MoveVideoAnimation(false, MoveAnimationType.TOP)
+            R.id.action_shader3 -> mAnimation = MoveVideoAnimation(false, MoveAnimationType.BOTTOM)
+            R.id.action_shader4 -> mAnimation = FlipVideoAnimation(false)
+            R.id.action_shader5 -> mAnimation = RotateVideoAnimation(false)
             R.id.action_shader6 -> {
-                mAnimation = SwirlAnimation(false)
+                mAnimation = SwirlVideoAnimation(false)
                 mGlSurfaceView.setShapeType(AnimationShapeType.SWIRL)
                 (mGlSurfaceView.getRender() as AnimationRender).mDirection = 1
                 recreateGlSurfaceView()
             }
-            R.id.action_zoom_out -> mAnimation = ZoomOutAnimation(false)
-            R.id.action_spin_u -> mAnimation = SpinOutAnimation()
+            R.id.action_zoom_out -> mAnimation = ZoomOutVideoAnimation(false)
+            R.id.action_spin_u -> mAnimation = SpinOutVideoAnimation()
         }
         updateAnimation(seekbar.progress / 100f)
         return true

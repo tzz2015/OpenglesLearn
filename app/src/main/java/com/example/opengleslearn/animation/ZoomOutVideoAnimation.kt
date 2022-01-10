@@ -1,7 +1,7 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 import com.example.opengleslearn.util.AnimationInterpolator
 import com.example.opengleslearn.util.Matrix3DUtils
 
@@ -10,7 +10,7 @@ import com.example.opengleslearn.util.Matrix3DUtils
  * @author:  刘宇飞
  * @date :   2021/12/27 14:14
  */
-class ZoomOutAnimation() : BaseAnimation() {
+class ZoomOutVideoAnimation() : BaseVideoAnimation() {
 
     constructor(isInt: Boolean) : this() {
         mIsIntAnimation = isInt

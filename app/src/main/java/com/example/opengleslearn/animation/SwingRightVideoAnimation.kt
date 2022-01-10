@@ -1,10 +1,10 @@
 package com.example.opengleslearn.animation
 
 import android.graphics.PointF
-import com.example.opengleslearn.animation.base.BaseSwingAnimation
+import com.example.opengleslearn.animation.base.BaseSwingVideoAnimation
 import com.example.opengleslearn.data.SwingPointData
 
-class SwingRightAnimation : BaseSwingAnimation() {
+class SwingRightVideoAnimation : BaseSwingVideoAnimation() {
     override fun initPointList() {
         mPointList.add(SwingPointData(0.16f,592f,0f))
         mPointList.add(SwingPointData(0.3f,333f,0f))

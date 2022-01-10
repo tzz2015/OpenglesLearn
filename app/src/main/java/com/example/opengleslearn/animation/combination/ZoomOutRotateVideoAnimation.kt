@@ -1,6 +1,6 @@
 package com.example.opengleslearn.animation.combination
 
-import com.example.opengleslearn.animation.base.BaseComAnimation
+import com.example.opengleslearn.animation.base.BaseComVideoAnimation
 import com.example.opengleslearn.data.AnimationSpeedType
 import com.example.opengleslearn.data.BaseAnimationInputData
 
@@ -9,7 +9,7 @@ import com.example.opengleslearn.data.BaseAnimationInputData
  * @author:  刘宇飞
  * @date :   2022/1/5 11:52
  */
-class ZoomOutRotateAnimation : BaseComAnimation() {
+class ZoomOutRotateVideoAnimation : BaseComVideoAnimation() {
 
     override fun initComList() {
     }

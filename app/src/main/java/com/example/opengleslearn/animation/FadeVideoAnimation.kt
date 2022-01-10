@@ -1,13 +1,13 @@
 package com.example.opengleslearn.animation
 
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 
 /**
  * @description: 渐显和渐隐
  * @author:  刘宇飞
  * @date :   2021/12/27 13:51
  */
-class FadeAnimation() : BaseAnimation() {
+class FadeVideoAnimation() : BaseVideoAnimation() {
 
     constructor(isInt: Boolean) : this() {
         mIsIntAnimation = isInt

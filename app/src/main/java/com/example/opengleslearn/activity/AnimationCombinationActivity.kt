@@ -8,7 +8,7 @@ import android.view.MenuItem
 import android.view.ViewGroup
 import android.widget.SeekBar
 import com.example.opengleslearn.R
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 import com.example.opengleslearn.animation.combination.*
 import com.example.opengleslearn.data.AnimationShapeType
 import com.example.opengleslearn.render.AnimationRender
@@ -28,7 +28,7 @@ class AnimationCombinationActivity : BaseActivity() {
             AnimationRender(this)
         )
     }
-    private var mAnimation: BaseAnimation? = null
+    private var mAnimation: BaseVideoAnimation? = null
 
     companion object {
         private const val TAG: String = "AnimationActivity"
@@ -90,12 +90,12 @@ class AnimationCombinationActivity : BaseActivity() {
             recreateGlSurfaceView()
         }
         when (item.itemId) {
-            R.id.action_shake_left -> mAnimation = ShakeAnimation(true)
-            R.id.action_shake_right -> mAnimation = ShakeAnimation(false)
-            R.id.action_spin_landing -> mAnimation = SpinLandingAnimation()
-            R.id.action_landing_spin -> mAnimation = LandingSpinAnimation()
-            R.id.action_rotate_zoom_out -> mAnimation = RotateZoomOutAnimation()
-            R.id.action_zoom_out_rotate -> mAnimation = ZoomOutRotateAnimation()
+            R.id.action_shake_left -> mAnimation = ShakeVideoAnimation(true)
+            R.id.action_shake_right -> mAnimation = ShakeVideoAnimation(false)
+            R.id.action_spin_landing -> mAnimation = SpinLandingVideoAnimation()
+            R.id.action_landing_spin -> mAnimation = LandingSpinVideoAnimation()
+            R.id.action_rotate_zoom_out -> mAnimation = RotateZoomOutVideoAnimation()
+            R.id.action_zoom_out_rotate -> mAnimation = ZoomOutRotateVideoAnimation()
         }
         updateAnimation(seekbar.progress / 100f)
         return true

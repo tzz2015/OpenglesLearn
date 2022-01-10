@@ -1,14 +1,14 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 
 /**
  * @description: Zoom In2放大I 先快后慢
  * @author:  刘宇飞
  * @date :   2021/12/27 14:14
  */
-class ZoomSecondAnimation() : BaseAnimation() {
+class ZoomSecondVideoAnimation() : BaseVideoAnimation() {
 
     constructor(isInt: Boolean) : this() {
         mIsIntAnimation = isInt

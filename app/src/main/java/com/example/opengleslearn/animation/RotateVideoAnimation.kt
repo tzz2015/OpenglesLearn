@@ -1,14 +1,14 @@
 package com.example.opengleslearn.animation
 
 import android.opengl.Matrix
-import com.example.opengleslearn.animation.base.BaseAnimation
+import com.example.opengleslearn.animation.base.BaseVideoAnimation
 
 /**
  * @description:
  * @author:  刘宇飞
  * @date :   2021/12/27 9:38
  */
-class RotateAnimation() : BaseAnimation() {
+class RotateVideoAnimation() : BaseVideoAnimation() {
     constructor(isInt: Boolean) : this() {
         mIsIntAnimation = isInt
     }
