@@ -33,7 +33,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mStMatrixLocation = 0
     private var mBlurSizeLocation = 0
     private val mMvpMatrix = FloatArray(16)
-    private val mCropMatrix = FloatArray(16)
+    private val mProjectViewMatrix = FloatArray(16)
     private val mStMatrix = FloatArray(16)
     private var mBgTexture: Int = 0
     private var mPicWidth: Int = 0
@@ -44,6 +44,7 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private var mProgress: Float = 0f
     private var mBlurSize: Float = 0f
     private var mIconId: Int = R.drawable.icon_animation
+    private var mScreenRatio: Float = 0f
 
 
     companion object {
@@ -97,7 +98,15 @@ class AnimationRender(context: Context) : CommonRenderer() {
 
     override fun setMvpMatrix(matrix: FloatArray) {
         Matrix.setIdentityM(mMvpMatrix, 0)
-        Matrix.multiplyMM(mMvpMatrix, 0, mCropMatrix, 0, matrix, 0)
+        // 缩放回来
+        if (mScreenRatio > 1.0f) {
+            Matrix.scaleM(matrix, 0, mScreenRatio, 1.0f, 1.0f)
+            Matrix.scaleM(matrix, 0, 1f / mScreenRatio, 1f / mScreenRatio, 1.0f)
+        } else {
+            Matrix.scaleM(matrix, 0, 1.0f, 1.0f / mScreenRatio, 1.0f)
+            Matrix.scaleM(matrix, 0, mScreenRatio, mScreenRatio, 1.0f)
+        }
+        Matrix.multiplyMM(mMvpMatrix, 0, mProjectViewMatrix, 0, matrix, 0)
     }
 
     override fun setStMatrix(matrix: FloatArray) {
@@ -216,6 +225,13 @@ class AnimationRender(context: Context) : CommonRenderer() {
 
     override fun onSurfaceChanged(p0: GL10?, width: Int, height: Int) {
         super.onSurfaceChanged(p0, width, height)
+        val canvasSize = mViewWidth.coerceAtLeast(mViewHeight)
+        glViewport(
+            (mViewWidth - canvasSize) / 2,
+            (mViewHeight - canvasSize) / 2,
+            canvasSize,
+            canvasSize
+        )
         centerInsert()
     }
 
@@ -225,20 +241,21 @@ class AnimationRender(context: Context) : CommonRenderer() {
     private fun centerInsert() {
         Matrix.setIdentityM(mMvpMatrix, 0)
         Matrix.setIdentityM(mStMatrix, 0)
-        Matrix.setIdentityM(mCropMatrix, 0)
+        Matrix.setIdentityM(mProjectViewMatrix, 0)
         val projectionMatrix = FloatArray(16)
         val viewMatrix = FloatArray(16)
+
         val picWidth = mPicWidth.toFloat()
         val picHeight = mPicHeight.toFloat()
         val picRatio = picWidth / picHeight
-        val screenRatio = mViewWidth / mViewHeight.toFloat()
+         mScreenRatio = mViewWidth / mViewHeight.toFloat()
         if (mViewWidth > mViewHeight) {
-            if (picRatio > screenRatio) {
+            if (picRatio > mScreenRatio) {
                 orthoM(
                     projectionMatrix,
                     0,
-                    -screenRatio * picRatio,
-                    screenRatio * picRatio,
+                    -mScreenRatio * picRatio,
+                    mScreenRatio * picRatio,
                     -1f,
                     1f,
                     3f,
@@ -248,8 +265,8 @@ class AnimationRender(context: Context) : CommonRenderer() {
                 orthoM(
                     projectionMatrix,
                     0,
-                    -screenRatio / picRatio,
-                    screenRatio / picRatio,
+                    -mScreenRatio / picRatio,
+                    mScreenRatio / picRatio,
                     -1f,
                     1f,
                     3f,
@@ -257,14 +274,14 @@ class AnimationRender(context: Context) : CommonRenderer() {
                 )
             }
         } else {
-            if (picRatio > screenRatio) {
+            if (picRatio > mScreenRatio) {
                 orthoM(
                     projectionMatrix,
                     0,
                     -1f,
                     1f,
-                    -1 / screenRatio * picRatio,
-                    1 / screenRatio * picRatio,
+                    -1 / mScreenRatio * picRatio,
+                    1 / mScreenRatio * picRatio,
                     3f,
                     7f
                 )
@@ -274,22 +291,20 @@ class AnimationRender(context: Context) : CommonRenderer() {
                     0,
                     -1f,
                     1f,
-                    -picRatio / screenRatio,
-                    picRatio / screenRatio,
+                    -picRatio / mScreenRatio,
+                    picRatio / mScreenRatio,
                     3f,
                     7f
                 )
             }
         }
         //设置相机位置
-        Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, 7.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f)
+        Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, 3.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f)
         //计算变换矩阵
-        Matrix.multiplyMM(mCropMatrix, 0, projectionMatrix, 0, viewMatrix, 0)
-        Constants.MAX_HORIZONTAL_OFFSET = 2.0f - mCropMatrix[0]
-        Constants.MAX_VERTICAL_OFFSET = 2.0f - mCropMatrix[5]
-        System.arraycopy(mCropMatrix, 0, mMvpMatrix, 0, mMvpMatrix.size)
-
-
+        Matrix.multiplyMM(mProjectViewMatrix, 0, projectionMatrix, 0, viewMatrix, 0)
+        Constants.MAX_HORIZONTAL_OFFSET = 2.0f - mProjectViewMatrix[0]
+        Constants.MAX_VERTICAL_OFFSET = 2.0f - mProjectViewMatrix[5]
+        System.arraycopy(mProjectViewMatrix, 0, mMvpMatrix, 0, mMvpMatrix.size)
     }
 
 
