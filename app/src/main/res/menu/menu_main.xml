@@ -61,7 +61,11 @@
         android:icon="@drawable/ic_aspect_sample"
         android:title="矩阵动画"
         app:showAsAction="never" />
-
+    <item
+        android:id="@+id/action_shader10"
+        android:icon="@drawable/ic_aspect_sample"
+        android:title="旋转"
+        app:showAsAction="never" />
     
 
 </menu>

@@ -46,6 +46,8 @@ class MainActivity : AppCompatActivity() {
             R.id.action_shader7 -> startActivity(Intent(this, ParticleActivity::class.java))
             R.id.action_shader8 -> startActivity(Intent(this, PictureLoadActivity::class.java))
             R.id.action_shader9 -> startActivity(Intent(this, AnimationIntActivity::class.java))
+            R.id.action_shader10 -> startActivity(Intent(this, RotatePicActivity::class.java))
+
         }
         return true
     }
