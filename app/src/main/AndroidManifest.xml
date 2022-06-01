@@ -29,6 +29,8 @@
         <activity android:name=".activity.AnimationIntActivity" />
         <activity android:name=".activity.AnimationOutActivity" />
         <activity android:name=".activity.AnimationCombinationActivity" />
+        <activity android:name=".activity.ThreeDimensionalActivity" />
+
     </application>
 
 </manifest>

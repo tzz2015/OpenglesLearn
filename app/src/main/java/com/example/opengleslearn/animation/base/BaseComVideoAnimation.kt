@@ -58,8 +58,8 @@ abstract class BaseComVideoAnimation() : BaseVideoAnimation() {
     override fun setProgress(progress: Float) {
         reset()
         doComAnimation(progress)
-        doTransition(progress)
         doRotate(progress)
+        doTransition(progress)
         doScale(progress)
         doBlur(progress)
     }
@@ -69,8 +69,8 @@ abstract class BaseComVideoAnimation() : BaseVideoAnimation() {
      */
     private fun doComAnimation(progress: Float) {
         val currData = getCurrData(mComList, progress)
-        applyTransition(currData, progress)
         applyRotate(currData, progress)
+        applyTransition(currData, progress)
         applyScale(currData, progress)
         applyBlur(currData, progress)
         applyAlpha(currData, progress)

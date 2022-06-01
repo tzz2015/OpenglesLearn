@@ -1,14 +1,12 @@
 package com.example.opengleslearn.render
 
 import android.content.Context
-import android.opengl.GLES10
 import android.opengl.GLES10.glClear
-import android.opengl.GLES20
 import android.opengl.GLES20.*
 import android.opengl.Matrix
 import android.opengl.Matrix.orthoM
 import com.example.opengleslearn.R
-import com.example.opengleslearn.util.LoggerConfig
+import com.example.opengleslearn.util.Matrix3DUtils
 import com.example.opengleslearn.util.ShaderHelper
 import com.example.opengleslearn.util.TextResourceReader
 import com.example.opengleslearn.util.TextureHelper
@@ -33,7 +31,7 @@ class RotatePictureRender(context: Context) : CommonRenderer() {
     private var mStMatrixLocation = 0
     private val mMvpMatrix = FloatArray(16)
     private val mStMatrix = FloatArray(16)
-    private val mModelatrix = FloatArray(16)
+    private val mModelMatrix = FloatArray(16)
     private val mPVMatrix = FloatArray(16)
     private var mBgTexture: Int = 0
     private var mPicWidth: Int = 0
@@ -162,7 +160,7 @@ class RotatePictureRender(context: Context) : CommonRenderer() {
         Matrix.setIdentityM(mMvpMatrix, 0)
         Matrix.setIdentityM(mStMatrix, 0)
         Matrix.setIdentityM(mPVMatrix, 0)
-        Matrix.setIdentityM(mModelatrix, 0)
+        Matrix.setIdentityM(mModelMatrix, 0)
 
         val projectionMatrix = FloatArray(16)
         val viewMatrix = FloatArray(16)
@@ -221,20 +219,33 @@ class RotatePictureRender(context: Context) : CommonRenderer() {
         }
         //设置相机位置
         Matrix.setLookAtM(viewMatrix, 0, 0f, 0f, 3.0f, 0f, 0f, 0f, 0f, 1.0f, 0.0f)
-        // 旋转90°
-        Matrix.rotateM(mModelatrix, 0, 90f, 0f, 0f, 1f)
+
+
+//        Matrix.rotateM(mStMatrix, 0, 90f, 0f, 0f, 1f)
+
+
         // 缩放回来
-        if (screenRatio > 1.0f) {
-            Matrix.scaleM(mModelatrix, 0, screenRatio, 1.0f, 1.0f)
-            Matrix.scaleM(mModelatrix, 0, 1f / screenRatio, 1f / screenRatio, 1.0f)
-        } else {
-            Matrix.scaleM(mModelatrix, 0, 1.0f, 1.0f / screenRatio, 1.0f)
-            Matrix.scaleM(mModelatrix, 0, screenRatio, screenRatio, 1.0f)
-        }
+         if (screenRatio > 1.0f) {
+             Matrix.scaleM(mModelMatrix, 0, screenRatio, 1.0f, 1.0f)
+             Matrix.scaleM(mModelMatrix, 0, 1f / screenRatio, 1f / screenRatio, 1.0f)
+         } else {
+             Matrix.scaleM(mModelMatrix, 0, 1.0f, 1.0f / screenRatio, 1.0f)
+             Matrix.scaleM(mModelMatrix, 0, screenRatio, screenRatio, 1.0f)
+         }
+        // 旋转90°
+//        Matrix.rotateM(mModelMatrix,0, 0f, 0f, 0f, 1f)
+//        Matrix.scaleM(mModelMatrix, 0, 1f,  1f/picRatio, 1.0f)
+//        Matrix.rotateM(mModelMatrix,0, -60f, 0f, 0f, 1f)
+        Matrix.scaleM(mModelMatrix, 0, 1f , 1f / picRatio, 1.0f)
+
+
 
         Matrix.multiplyMM(mPVMatrix, 0, projectionMatrix, 0, viewMatrix, 0)
+
+
+
         //计算变换矩阵
-        Matrix.multiplyMM(mMvpMatrix, 0, mPVMatrix, 0, mModelatrix, 0)
+        Matrix.multiplyMM(mMvpMatrix, 0, mPVMatrix, 0, mModelMatrix, 0)
     }
 
 
